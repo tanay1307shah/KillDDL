@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_login">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignEnd="@+id/genderSpinner"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/com_facebook_auth_dialog_background" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/genderSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="24dp"
+        android:ems="10"
+        android:fontFamily="casual"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:textColorHint="#777777" />
+
+    <TextView
+        android:id="@+id/gender_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/name"
+        android:layout_below="@+id/img"
+        android:layout_marginTop="134dp"
+        android:fontFamily="casual"
+        android:text="Gender"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <Spinner
+        android:id="@+id/genderSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/gender_tag"
+        android:layout_marginStart="9dp"
+        android:layout_toEndOf="@+id/gender_tag"
+        android:entries="@array/genderArr" />
+
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="casual"
+        android:text="save"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/pswd"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/emailAdd"
+        android:layout_below="@+id/emailAdd"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:fontFamily="casual"
+        android:hint="Password"
+        android:inputType="textAutoComplete|textPassword"
+        android:textColorHint="#777777" />
+
+    <EditText
+        android:id="@+id/imgUrl"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/pswd"
+        android:layout_below="@+id/pswd"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:fontFamily="casual"
+        android:hint="image url"
+        android:inputType="textPersonName"
+        android:textColorHint="#777777" />
+
+    <EditText
+        android:id="@+id/race"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/gender_tag"
+        android:layout_below="@+id/gender_tag"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:fontFamily="casual"
+        android:hint="Ethnicity"
+        android:inputType="textPersonName"
+        android:textColorHint="#777777" />
+
+    <EditText
+        android:id="@+id/emailAdd"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/race"
+        android:layout_below="@+id/race"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:fontFamily="casual"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#777777" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/img"
+        android:layout_alignParentEnd="true"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        style="?android:attr/borderlessButtonStyle" />
+
+
+</RelativeLayout>
