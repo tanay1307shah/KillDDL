@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_login"
+    >
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="779dp"
+        android:layout_height="449dp"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="750dp" />
+
+    <CalendarView
+        android:id="@+id/calendarView2"
+        android:layout_width="784dp"
+        android:layout_height="399dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="199dp" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ToggleButton"
+        android:textOff="Monthly View"
+        android:textOn="Daily View"
+        tools:layout_editor_absoluteX="327dp"
+        tools:layout_editor_absoluteY="122dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Kill DDL"
+        tools:layout_editor_absoluteX="271dp"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="This Month"
+        tools:layout_editor_absoluteX="292dp"
+        tools:layout_editor_absoluteY="679dp" />
+</android.support.constraint.ConstraintLayout>
