@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "146895181380",
+    "firebase_url": "https://killddl-new.firebaseio.com",
+    "project_id": "killddl-new",
+    "storage_bucket": "killddl-new.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146895181380:android:ba6c870c5b2bb061",
+        "android_client_info": {
+          "package_name": "com.map524s1a.killddl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146895181380-0db6inm493j3jorrq67un1ugq76g7jn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqwh_ZULZ6QCF-QqJotTcnycKc-Fn7U3Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
