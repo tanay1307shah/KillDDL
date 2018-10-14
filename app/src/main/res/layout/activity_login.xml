@@ -30,6 +30,7 @@
         android:textAlignment="center"
         android:layout_weight="1"
         android:ems="10"
+        android:textColorHint="#777777"
         android:inputType="textEmailAddress" />
 
     <EditText
@@ -41,6 +42,7 @@
         android:layout_height="10dp"
         android:layout_weight="1"
         android:ems="10"
+        android:textColorHint="#777777"
         android:inputType="textEmailAddress" />
 
     <FrameLayout
