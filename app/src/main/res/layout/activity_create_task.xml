@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="25dp"
     android:background="@drawable/gradient_login">
-    <!---->
 
     <TextView
         android:id="@+id/textView"
