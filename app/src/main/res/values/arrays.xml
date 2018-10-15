@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="genderArr">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="yesNo">
+        <item>No</item>
+        <item>Yes</item>
+        <item>Unsure</item>
+    </string-array>
+    <string-array name="intend">
+        <item>No</item>
+        <item>Yes</item>
+        <item>Not Sure</item>
+        <item>Skip It</item>
+    </string-array>
+</resources>

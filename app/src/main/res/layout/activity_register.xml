@@ -11,19 +11,21 @@
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_alignEnd="@+id/genderSpinner"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/com_facebook_auth_dialog_background" />
+        android:scaleType="fitCenter"
+        android:contentDescription="Profile Image" />
+        <!--android:src="@drawable/ic_" />-->
 
     <EditText
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/genderSpinner"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="36dp"
-        android:layout_marginStart="24dp"
+        android:layout_below="@+id/img"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
         android:ems="10"
         android:fontFamily="casual"
         android:hint="Name"
@@ -40,15 +42,17 @@
         android:fontFamily="casual"
         android:text="Gender"
         android:textColor="#000000"
-        android:textSize="15sp" />
+        android:textSize="18sp" />
 
     <Spinner
         android:id="@+id/genderSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/gender_tag"
         android:layout_alignBottom="@+id/gender_tag"
         android:layout_marginStart="9dp"
-        android:layout_toEndOf="@+id/gender_tag" />
+        android:layout_toEndOf="@+id/gender_tag"
+        android:entries="@array/genderArr" />
 
 
     <Button
@@ -90,26 +94,14 @@
         android:inputType="textPersonName"
         android:textColorHint="#777777" />
 
-    <EditText
-        android:id="@+id/race"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/gender_tag"
-        android:layout_below="@+id/gender_tag"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:fontFamily="casual"
-        android:hint="Ethnicity"
-        android:inputType="textPersonName"
-        android:textColorHint="#777777" />
 
     <EditText
         android:id="@+id/emailAdd"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/race"
-        android:layout_below="@+id/race"
-        android:layout_marginTop="14dp"
+        android:layout_alignStart="@+id/gender_tag"
+        android:layout_below="@+id/gender_tag"
+        android:layout_marginTop="26dp"
         android:ems="10"
         android:fontFamily="casual"
         android:hint="Email Address"
