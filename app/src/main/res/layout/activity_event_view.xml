@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_login"
     >
-
+s
     <EditText
         android:id="@+id/editText4"
         android:layout_width="wrap_content"
