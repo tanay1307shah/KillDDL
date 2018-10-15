@@ -6,6 +6,37 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_login"
     >
+
+    <EditText
+        android:id="@+id/editText23"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Event Placeholder"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="588dp" />
+
+    <EditText
+        android:id="@+id/editText19"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Event Placeholder"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="294dp" />
+
+    <EditText
+        android:id="@+id/editText20"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Event Placeholder"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="363dp" />
+
     <EditText
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
@@ -16,30 +47,67 @@
         tools:layout_editor_absoluteX="98dp"
         tools:layout_editor_absoluteY="16dp" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ToggleButton"
-        android:textOff="Daily View"
-        android:textOn="Monthly View"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="68dp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="395dp"
-        android:layout_height="445dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="197dp" />
-
     <EditText
         android:id="@+id/editText5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="date"
-        android:text="meow"
+        android:text="Placeholder"
         tools:layout_editor_absoluteX="99dp"
         tools:layout_editor_absoluteY="137dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button2"
+        android:layout_alignTop="@+id/button2"
+        android:background="@drawable/button_design_plain"
+        android:text="Calendar"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="77dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/button_design_fb"
+        android:text="Daily"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="77dp" />
+
+    <EditText
+        android:id="@+id/editText18"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Event Placeholder"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="216dp" />
+
+    <EditText
+        android:id="@+id/editText22"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Event Placeholder"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="516dp" />
+
+    <EditText
+        android:id="@+id/editText21"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Event Placeholder"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="437dp" />
+
 
 </android.support.constraint.ConstraintLayout>
