@@ -100,7 +100,7 @@ public class RegisterActivity  extends AppCompatActivity{
                 pwd = paswd.getText().toString();
 
                     if(gender != null && fName != null && emailId != null && pwd != null){
-                        Intent i = new Intent(getApplicationContext(),RegisterActivity.class);
+                        Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
                         //put user object in intent
                         startActivity(i);
                     }else{

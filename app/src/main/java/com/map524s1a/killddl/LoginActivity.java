@@ -50,7 +50,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 emailAdd = email.getText().toString();
                 Password = passwd.getText().toString();
-                Toast.makeText(getApplicationContext(),emailAdd.toString() + "\n" + Password.toString(), Toast.LENGTH_SHORT).show();
+
+                if(emailAdd.equalsIgnoreCase("killddl@usc.edu") && Password.equalsIgnoreCase("wegotit")){
+                    Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
+                    startActivity(i);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Wrong Combination\n" +emailAdd.toString() + "\n" + Password.toString() , Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

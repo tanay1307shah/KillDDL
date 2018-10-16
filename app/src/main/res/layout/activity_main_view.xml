@@ -10,6 +10,16 @@
     tools:context="com.map524s1a.killddl.MainViewActivity">
 
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_above="@+id/navigation"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+    </FrameLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
@@ -40,26 +50,28 @@
         app:srcCompat="@drawable/ic_add_black_24dp"
         android:tint="@color/cardview_light_background"/>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="32dp"
-        android:text="Button"
-        android:background="@drawable/button_design_fb"/>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button2"
-        android:layout_alignTop="@+id/button2"
-        android:layout_marginStart="62dp"
-        android:text="Button"
-        android:background="@drawable/button_design_plain"/>
+
+    <!--<Button-->
+        <!--android:id="@+id/button2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginStart="130dp"-->
+        <!--android:layout_marginTop="32dp"-->
+        <!--android:text="Button"-->
+        <!--android:background="@drawable/button_design_fb"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/button3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignStart="@+id/button2"-->
+        <!--android:layout_alignTop="@+id/button2"-->
+        <!--android:layout_marginStart="62dp"-->
+        <!--android:text="Button"-->
+        <!--android:background="@drawable/button_design_plain"/>-->
 
 
 </RelativeLayout>

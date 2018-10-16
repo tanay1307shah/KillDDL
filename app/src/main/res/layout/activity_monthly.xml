@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,90 +7,31 @@
     android:background="@drawable/gradient_login"
     >
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="779dp"
-        android:layout_height="449dp"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="750dp" />
-
     <CalendarView
         android:id="@+id/calendarView2"
-        android:layout_width="362dp"
+        android:weekDayTextAppearance="@color/com_facebook_blue"
+        android:layout_width="match_parent"
         android:layout_height="302dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         tools:layout_editor_absoluteX="24dp"
         tools:layout_editor_absoluteY="147dp" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Kill DDL"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="This Month"
-        tools:layout_editor_absoluteX="292dp"
-        tools:layout_editor_absoluteY="679dp" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ListView
+        android:id="@+id/list_view_monthly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/button_design_fb"
-        android:text="Daily"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="77dp" />
+        android:layout_below="@+id/calendarView2" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button2"
-        android:layout_alignTop="@+id/button2"
-        android:background="@drawable/button_design_plain"
-        android:text="Calendar"
-        tools:layout_editor_absoluteX="204dp"
-        tools:layout_editor_absoluteY="77dp" />
+    <!--<FrameLayout-->
+        <!--android:id="@+id/fragment_container_monthly"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/calendarView2">-->
 
-    <EditText
-        android:id="@+id/editText24"
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Event Placeholder"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="464dp" />
-
-    <EditText
-        android:id="@+id/editText25"
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Event Placeholder"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="524dp" />
-
-    <EditText
-        android:id="@+id/editText26"
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Event Placeholder"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="588dp" />
+    <!--</FrameLayout>-->
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
