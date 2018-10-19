@@ -13,10 +13,9 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="525dp"
         android:layout_above="@+id/navigation"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentStart="true">
 
     </FrameLayout>
 
@@ -50,28 +49,48 @@
         app:srcCompat="@drawable/ic_add_black_24dp"
         android:tint="@color/cardview_light_background"/>
 
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:showText="false"
+        android:track="@drawable/button_design_plain"
+        android:thumb="@drawable/customswitchselector"
+        />
 
-
-    <!--<Button-->
-        <!--android:id="@+id/button2"-->
+    <!--<LinearLayout-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginStart="130dp"-->
-        <!--android:layout_marginTop="32dp"-->
-        <!--android:text="Button"-->
-        <!--android:background="@drawable/button_design_fb"/>-->
+        <!--android:layout_above="@+id/fragment_container"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="@drawable/button_design_plain">-->
 
-    <!--<Button-->
+        <!--<Button-->
+            <!--android:id="@+id/button2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="130dp"-->
+            <!--android:layout_marginTop="32dp"-->
+            <!--android:background="@drawable/button_design_fb"-->
+            <!--android:text="Button" />-->
+
+        <!--<Button-->
         <!--android:id="@+id/button3"-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignStart="@+id/button2"-->
-        <!--android:layout_alignTop="@+id/button2"-->
         <!--android:layout_marginStart="62dp"-->
         <!--android:text="Button"-->
         <!--android:background="@drawable/button_design_plain"/>-->
+
+    <!--</LinearLayout>-->
+
+
+
 
 
 </RelativeLayout>
