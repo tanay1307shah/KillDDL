@@ -7,11 +7,76 @@
     android:background="@drawable/gradient_login"
     >
 
+    <!--<Switch-->
+        <!--android:id="@+id/mySwitch"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="18dp"-->
+        <!--android:showText="false"-->
+        <!--android:textColor="@color/cardview_light_background"-->
+        <!--android:textColorHint="@color/cardview_light_background"-->
+        <!--android:textOff="Monthly"-->
+        <!--android:textOn="Daily"-->
+        <!--android:thumb="@drawable/customswitchselector"-->
+        <!--android:track="@drawable/button_design_plain" />-->
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_design_plain"
+        android:elevation="5dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_design_fb"
+            android:text="Monthly"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/cardview_light_background"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="Daily"
+            />
+    </LinearLayout>
     <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="64dp" />
+
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignBaseline="@+id/mySwitch"-->
+        <!--android:layout_alignBottom="@+id/mySwitch"-->
+        <!--android:layout_alignEnd="@+id/mySwitch"-->
+        <!--android:layout_alignStart="@+id/mySwitch"-->
+        <!--android:text="Daily"-->
+        <!--android:textAlignment="viewEnd" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView9"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignEnd="@+id/mySwitch"-->
+        <!--android:layout_alignStart="@+id/mySwitch"-->
+        <!--android:layout_alignTop="@+id/textView"-->
+        <!--android:text="Monthly"-->
+        <!--android:textAlignment="viewStart" />-->
 
 </RelativeLayout>
