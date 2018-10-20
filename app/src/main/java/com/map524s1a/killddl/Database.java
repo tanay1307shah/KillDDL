@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Database {
     FirebaseDatabase database;
@@ -57,6 +59,16 @@ public class Database {
         return dailyEvents;
     }
 
+    public void sort(List<Event> list) {
+        //Sort the parameter list
+        Collections.sort(list, new Comparator<Event>() {
+            public int compare(Event o1, Event o2) {
+                if (o1.get_dueDate() == null || o2.get_dueDate() == null)
+                    return 0;
+                return o1.get_dueDate().compareTo(o2.get_dueDate());
+            }
+        });
+    }
     public static void main(String[]args){
         // for testing
         Database db = new Database();
