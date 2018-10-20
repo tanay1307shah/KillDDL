@@ -27,14 +27,14 @@ public class Database {
         dbRef.child("user").child("password").setValue(password);
     }
 
-    public void addEvent(String email, String eventName, String description, Date dueDate, int frequency, int importance){
+    public void addEvent(String eventName, String description, Date dueDate, int frequency, int importance,int id){
         String userId = email;
         List<Event> eventList = dbRef.child("_users").child(userId).child("_event").getValue();
 
 
         dbRef.child("_users").child(userId).child("_event").setValue(user);
 
-
+        String key = dbRef.child("posts").push().getKey();
         Event newEvent = new Event(eventName, description, dueDate, frequency, importance,id);
         Map<String, Object> postValues = newEvent.toMap();
 
