@@ -20,9 +20,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Date;
 
 public class MainViewActivity extends AppCompatActivity {
+    // Firebase instance variables
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("message");
 
     private TextView mTextMessage;
     private Switch s;
@@ -42,8 +48,10 @@ public class MainViewActivity extends AppCompatActivity {
 
     private User user;
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -191,8 +199,6 @@ public class MainViewActivity extends AppCompatActivity {
 
                     }
                 });
-
-
 
                 addB.setOnClickListener(new View.OnClickListener() {
                     @Override
