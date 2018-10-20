@@ -16,8 +16,7 @@ public class Database {
     DatabaseReference dbRef;
     public Database(){
         database = FirebaseDatabase.getInstance();
-        dbRef = database.getReference("message");
-        dbRef.setValue("Hello, World!");
+        dbRef = database.getReference("user");
     }
 
     public void updateEmail(String email){
@@ -29,6 +28,12 @@ public class Database {
     }
 
     public void addEvent(String eventName, String description, Date dueDate, int frequency, int importance,int id){
+        String userId = email;
+        List<Event> eventList = dbRef.child("_users").child(userId).child("_event").getValue();
+
+
+        dbRef.child("_users").child(userId).child("_event").setValue(user);
+
         String key = dbRef.child("posts").push().getKey();
         Event newEvent = new Event(eventName, description, dueDate, frequency, importance,id);
         Map<String, Object> postValues = newEvent.toMap();
