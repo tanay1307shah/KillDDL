@@ -43,7 +43,7 @@ public class User {
         int importance = toAdd.get_importance();
         int id = toAdd.get_id();
         //Call the database addEvent, which will convert the event into the proper form
-        _db.addEvent(eventName,description,dueDate,frequency,importance,id);
+       // _db.addEvent(eventName,description,dueDate,frequency,importance,id);
     }
 
     public void DeleteEvent(int id){ //TODO

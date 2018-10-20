@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 /**
  * Created by tanay on 10/15/2018.
  */
@@ -37,6 +39,11 @@ public class DailyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View fm_layout = inflater.inflate(R.layout.activity_daily,container,false);
         lv = fm_layout.findViewById(R.id.listView);
+
+        List<Event> shops = EventSingleton.get(getApplicationContext()).getEvents();
+        adapter = new EventListAdapter(getApplicationContext(), 0, shops);
+        lv.setAdapter(adapter);
+
         return fm_layout;
     }
 
