@@ -203,8 +203,8 @@ public class MainViewActivity extends AppCompatActivity {
                         descripString = description.toString();
                         Date dueDate = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(date));
 
-                        Event newEvent = new Event(eventNameString, descripString, dueDate, 1 , 1); // last two parameters are frequency and importance
-                        user.AddEvent(newEvent);
+                        //Event newEvent = new Event(eventNameString, descripString, dueDate, 1 , 1); // last two parameters are frequency and importance
+                        //user.AddEvent(newEvent);
                     }
                 });
                 builder.setView(mView);

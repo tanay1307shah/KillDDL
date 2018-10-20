@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 /**
  * Created by tanay on 10/15/2018.
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 
 public class DailyFragment extends Fragment {
 
+    private ListView lv;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ public class DailyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View fm_layout = inflater.inflate(R.layout.activity_daily,container,false);
+        lv = fm_layout.findViewById(R.id.listView);
         return fm_layout;
     }
 

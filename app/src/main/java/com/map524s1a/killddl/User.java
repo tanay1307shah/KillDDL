@@ -22,14 +22,14 @@ public class User {
     public void getMonthsEvent(String _email) //TODO
     {
         List<Event> MonthlyEvents;
-        MonthlyEvents=_db.getMonthlyEvents(_email);
+       // MonthlyEvents=_db.getMonthlyEvents(_email);
     }
 
     //Get Day event, returns nothing but
     public void getDayEvent(String _email) //TODO
     {
         List<Event> DayEvents;
-        DayEvents =_db.getMonthlyEvents(_email);
+        //DayEvents =_db.getMonthlyEvents(_email);
     }
 
     //Adds the event

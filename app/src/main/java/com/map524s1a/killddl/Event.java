@@ -1,10 +1,11 @@
 package com.map524s1a.killddl;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Event {
+public class Event implements Serializable {
     private String _eventName;
     private String _description;
     private Date _dueDate;
