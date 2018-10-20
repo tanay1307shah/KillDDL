@@ -1,6 +1,7 @@
 package com.map524s1a.killddl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -17,31 +18,30 @@ public class User {
     }
 
     //Get months com.map524s1a.killddl.Event, returns nothing but,
-    public void getMonthsEvent() //TODO
+    public void getMonthsEvent(String _email) //TODO
     {
         List<Event> MonthlyEvents;
-        MonthlyEvents=_db.getMonthlyEvents();
+        MonthlyEvents=_db.getMonthlyEvents(_email);
     }
 
     //Get Day event, returns nothing but
-    public void getDayEvent() //TODO
+    public void getDayEvent(String _email) //TODO
     {
         List<Event> DayEvents;
-        DayEvents =_db.getMonthlyEvents();
-
+        DayEvents =_db.getMonthlyEvents(_email);
     }
 
     //Adds the event
     public void AddEvent(Event toAdd) //TODO
     {
         //Potentially "Would you like to add an event?"
-        /*String eventName;
-        String description;
-        String dueDate;
-        String frequency;
-        String importance;
+        String eventName = toAdd.get_eventName();
+        String description = toAdd.get_description();
+        Date dueDate = toAdd.get_dueDate();
+        int frequency = toAdd.get_frequency();
+        int importance = toAdd.get_importance();
         //Call the database addEvent, which will convert the event into the proper form
-        _db.addEvent(eventName,description,dueDate,frequency,importance);*/
+        _db.addEvent(eventName,description,dueDate,frequency,importance);
     }
 
 }

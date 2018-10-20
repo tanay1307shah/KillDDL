@@ -22,11 +22,17 @@ public class Database {
         dbRef.child("user").child("email").setValue(email);
     }
 
-    public void updatePassport(String password){
+    public void updatePassword(String password){
         dbRef.child("user").child("password").setValue(password);
     }
 
-    public void addEvent(String eventName, String description, Date dueDate, int frequency, int importance){
+    public void addEvent(String email, String eventName, String description, Date dueDate, int frequency, int importance){
+        String userId = email;
+        mDatabase.child("_users").child(userId).child("_username").setValue(name);
+
+        dbRef.child("_users").child(userId).child("_event").setValue(user);
+
+
         String key = dbRef.child("posts").push().getKey();
         Event newEvent = new Event(eventName, description, dueDate, frequency, importance);
         Map<String, Object> postValues = newEvent.toMap();
@@ -36,7 +42,7 @@ public class Database {
         dbRef.updateChildren(childUpdates);
     }
 
-    public List<Event> getMonthlyEvents(){ //TODO
+    public List<Event> getMonthlyEvents(String email){ //TODO
         List<Event> monthlyEvents = new ArrayList<Event>();
         Date date=java.util.Calendar.getInstance().getTime();
         System.out.println(date);
@@ -44,7 +50,7 @@ public class Database {
         return monthlyEvents;
     }
 
-    public List<Event> getDailyEvents(){ //TODO
+    public List<Event> getDailyEvents(String email){ //TODO
         //get current day and return all events that correspond to this day
         List<Event> dailyEvents = new ArrayList<Event>();
 
@@ -54,6 +60,6 @@ public class Database {
     public static void main(String[]args){
         // for testing
         Database db = new Database();
-        db.getMonthlyEvents();
+        db.getMonthlyEvents("killddl.usc.edu");
     }
 }

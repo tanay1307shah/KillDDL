@@ -40,6 +40,8 @@ public class MainViewActivity extends AppCompatActivity {
     private String[] yearArr;
     private String[] notifyArr;
 
+    private User user;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -132,8 +134,8 @@ public class MainViewActivity extends AppCompatActivity {
                 Spinner yearSpin = mView.findViewById(R.id.spinner_year);
                 Spinner notifySpin = mView.findViewById(R.id.spinner_notify);
                 ImageButton colorPick = mView.findViewById(R.id.color_picker);
-                TextView eventName = mView.findViewById(R.id.topic_val);
-                TextView description = mView.findViewById(R.id.des_val);
+                final TextView eventName = mView.findViewById(R.id.topic_val);
+                final TextView description = mView.findViewById(R.id.des_val);
 
                 dateSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -197,10 +199,12 @@ public class MainViewActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Toast.makeText(getApplicationContext(),"New com.map524s1a.killddl.Event Added!", Toast.LENGTH_SHORT).show();
                         // do event
+                        eventNameString = eventName.toString();
+                        descripString = description.toString();
+                        Date dueDate = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(date));
 
-                            Event newEvent = new Event(eventName.toString(), description.toString(), Date dueDate, int frequency, int importance){
-
-                            user.addEvent(newEvent);
+                        Event newEvent = new Event(eventNameString, descripString, dueDate, 1 , 1); // last two parameters are frequency and importance
+                        user.AddEvent(newEvent);
                     }
                 });
                 builder.setView(mView);
