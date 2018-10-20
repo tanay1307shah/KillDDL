@@ -20,6 +20,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Date;
+
 public class MainViewActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -30,6 +32,8 @@ public class MainViewActivity extends AppCompatActivity {
     private String date;
     private String year;
     private String notify;
+    private String eventNameString;
+    private String descripString;
 
     private String[] dateArr;
     private String[] monthArr;
@@ -128,6 +132,8 @@ public class MainViewActivity extends AppCompatActivity {
                 Spinner yearSpin = mView.findViewById(R.id.spinner_year);
                 Spinner notifySpin = mView.findViewById(R.id.spinner_notify);
                 ImageButton colorPick = mView.findViewById(R.id.color_picker);
+                TextView eventName = mView.findViewById(R.id.topic_val);
+                TextView description = mView.findViewById(R.id.des_val);
 
                 dateSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -191,8 +197,10 @@ public class MainViewActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Toast.makeText(getApplicationContext(),"New com.map524s1a.killddl.Event Added!", Toast.LENGTH_SHORT).show();
                         // do event
-                        Event newEvent = new Event();
-                        user.addEvent(newEvent);
+
+                            Event newEvent = new Event(eventName.toString(), description.toString(), Date dueDate, int frequency, int importance){
+
+                            user.addEvent(newEvent);
                     }
                 });
                 builder.setView(mView);
