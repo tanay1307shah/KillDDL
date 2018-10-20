@@ -189,7 +189,10 @@ public class MainViewActivity extends AppCompatActivity {
                 addB.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(),"New Event Added!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"New com.map524s1a.killddl.Event Added!", Toast.LENGTH_SHORT).show();
+                        // do event
+                        Event newEvent = new Event();
+                        user.addEvent(newEvent);
                     }
                 });
                 builder.setView(mView);

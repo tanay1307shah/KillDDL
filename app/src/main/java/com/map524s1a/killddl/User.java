@@ -1,3 +1,5 @@
+package com.map524s1a.killddl;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class User {
         _db = new Database();
     }
 
-    //Get months Event, returns nothing but,
+    //Get months com.map524s1a.killddl.Event, returns nothing but,
     public void getMonthsEvent() //TODO
     {
         List<Event> MonthlyEvents;
