@@ -23,7 +23,7 @@ public class Database {
         dbRef.child("user").child("email").setValue(email);
     }
 
-    public void updatePassword(String password){
+    public void updatePassport(String password){
         dbRef.child("user").child("password").setValue(password);
     }
 
@@ -35,8 +35,7 @@ public class Database {
         dbRef.child("_users").child(userId).child("_event").setValue(user);
 
 
-        String key = dbRef.child("posts").push().getKey();
-        Event newEvent = new Event(eventName, description, dueDate, frequency, importance);
+        Event newEvent = new Event(eventName, description, dueDate, frequency, importance,id);
         Map<String, Object> postValues = newEvent.toMap();
 
         Map<String, Object> childUpdates = new HashMap<>();
@@ -44,7 +43,8 @@ public class Database {
         dbRef.updateChildren(childUpdates);
     }
 
-    public List<Event> getMonthlyEvents(String email){ //TODO
+
+    public List<Event> getMonthlyEvents(){ //TODO
         List<Event> monthlyEvents = new ArrayList<Event>();
         Date date=java.util.Calendar.getInstance().getTime();
         System.out.println(date);
@@ -52,7 +52,7 @@ public class Database {
         return monthlyEvents;
     }
 
-    public List<Event> getDailyEvents(String email){ //TODO
+    public List<Event> getDailyEvents(){ //TODO
         //get current day and return all events that correspond to this day
         List<Event> dailyEvents = new ArrayList<Event>();
 
@@ -72,6 +72,6 @@ public class Database {
     public static void main(String[]args){
         // for testing
         Database db = new Database();
-        db.getMonthlyEvents("killddl.usc.edu");
+        db.getMonthlyEvents();
     }
 }

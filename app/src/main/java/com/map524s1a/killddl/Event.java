@@ -10,13 +10,23 @@ public class Event {
     private Date _dueDate;
     private int _frequency; // number represents frequency type
     private int _importance; // importance is from 1 to 3
+    private int _id;
 
-    public Event(String eventName, String description, Date dueDate, int frequency, int importance){
+    public Event(String eventName, String description, Date dueDate, int frequency, int importance, int id){
         _eventName = eventName;
         _description = description;
         _dueDate = dueDate;
         _frequency = frequency;
         _importance = importance;
+        _id = id;
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int id) {
+        this._id=id;
     }
 
     public String get_eventName() {
