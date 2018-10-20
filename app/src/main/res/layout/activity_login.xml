@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone" />
 -->
-        <Button
+        <com.facebook.login.widget.LoginButton
             android:background="@drawable/button_design_fb"
             android:layout_width="275dp"
             android:layout_gravity="center_horizontal"

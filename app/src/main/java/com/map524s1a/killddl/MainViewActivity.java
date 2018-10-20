@@ -16,13 +16,14 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainViewActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
-
+    private Switch s;
     private FloatingActionButton addBtn;
 
     private String month;
@@ -46,6 +47,7 @@ public class MainViewActivity extends AppCompatActivity {
             switch (item.getItemId()) {
 
                 case R.id.list:
+                    s.setVisibility(View.VISIBLE);
                     if(f == null){
                         f = new DailyFragment();
                         ft.add(R.id.fragment_container,f);
@@ -60,6 +62,7 @@ public class MainViewActivity extends AppCompatActivity {
                 case R.id.notify:
                     return true;
                 case R.id.profile:
+                    s.setVisibility(View.INVISIBLE);
                     if(f == null){
                         f = new ProfileFragment();
                         ft.add(R.id.fragment_container,f);
@@ -83,6 +86,7 @@ public class MainViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
 
+        s = findViewById(R.id.switch1);
         dateArr = getResources().getStringArray(R.array.dateArr);
         monthArr = getResources().getStringArray(R.array.monthArr);
         yearArr = getResources().getStringArray(R.array.yearArr);

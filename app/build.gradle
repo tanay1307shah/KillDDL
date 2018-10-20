@@ -33,5 +33,6 @@ dependencies {
     compile 'com.google.firebase:firebase-core:16.0.4'
     compile 'com.google.firebase:firebase-database:16.0.3'
     compile 'com.firebaseui:firebase-ui-database:0.6.2'
+    compile 'com.facebook.android:facebook-android-sdk:4.37.0'
 
 }
