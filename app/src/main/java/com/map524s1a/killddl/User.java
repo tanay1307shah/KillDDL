@@ -9,8 +9,10 @@ public class User {
     private String _password;
     private List<Event> _events;
     private Database _db;
+    private int userId;
 
-    public User(String email, String password){
+    public User(int id,String email, String password){
+        this.userId = id;
         _email = email;
         _password = password;
         _events = new ArrayList<Event>();
