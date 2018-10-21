@@ -39,7 +39,7 @@ dependencies {
 
     //firebase
     implementation "com.google.firebase:firebase-database:$playServices"
-
+    implementation project(':mysql-connector-java-5.1.46')
     compile "com.google.android.gms:play-services-gcm:10.2.1"
     compile 'com.firebaseui:firebase-ui-database:0.6.2'
     compile 'com.facebook.android:facebook-android-sdk:4.37.0'

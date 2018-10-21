@@ -1,10 +1,11 @@
 package com.map524s1a.killddl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class User {
+public class User  implements Serializable{
     private String _email;
     private String _password;
     private List<Event> _events;

@@ -7,19 +7,23 @@ import java.util.Map;
 
 public class Event implements Serializable {
     private String _eventName;
+    private String color;
     private String _description;
     private Date _dueDate;
     private int _frequency; // number represents frequency type
     private int _importance; // importance is from 1 to 3
     private int _id;
+    private Date time;
 
-    public Event(String eventName, String description, Date dueDate, int frequency, int importance, int id){
+    public Event(String eventName, String description, Date dueDate, Date time, int frequency, int importance, int id,String color){
         _eventName = eventName;
+        this.time = time;
         _description = description;
         _dueDate = dueDate;
         _frequency = frequency;
         _importance = importance;
         _id = id;
+        this.color = color;
     }
 
     public int get_id() {

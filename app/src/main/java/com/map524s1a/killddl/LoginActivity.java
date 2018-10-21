@@ -74,6 +74,20 @@ public class LoginActivity extends AppCompatActivity {
                 emailAdd = email.getText().toString();
                 Password = passwd.getText().toString();
 
+                loginThread lt = new loginThread(emailAdd, Password, new response() {
+                    @Override
+                    public void callback(boolean isLoggedIn, User u) {
+
+                        if(isLoggedIn == true){
+                            Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
+                            i.putExtra("user",u);
+                            startActivity(i);
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Wrong Combination\n" +emailAdd.toString() + "\n" + Password.toString() , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
                 if(emailAdd.equalsIgnoreCase("killddl@usc.edu") && Password.equalsIgnoreCase("wegotit")){
                     Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
                     startActivity(i);

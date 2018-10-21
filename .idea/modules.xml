@@ -3,8 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KillDDL.iml" filepath="$PROJECT_DIR$/KillDDL.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Kill_DDL_N.iml" filepath="$PROJECT_DIR$/Kill_DDL_N.iml" />
+      <module fileurl="file://E:\cs310\KillDDL\Kill_DDL_N.iml" filepath="E:\cs310\KillDDL\Kill_DDL_N.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46.iml" filepath="$PROJECT_DIR$/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46.iml" />
     </modules>
   </component>
 </project>

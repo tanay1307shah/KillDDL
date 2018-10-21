@@ -33,6 +33,7 @@ public class loginThread extends Thread {
 
         boolean isLoggedIn = false;
         User u =null;
+        Event e = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.43.128:3306/smile?user=root&password=tShah0713!&useSSL=false");
@@ -57,14 +58,17 @@ public class loginThread extends Thread {
                 ResultSet rs1 = ps.executeQuery();
 
                 if(rs != null){
-                    
+                    while(rs.next()){
+                        e =  new Event(rs.getString("title"),rs.getString("description"),rs.getDate("eventDate"),rs.getTime("notifyTime"),rs.getInt("frequency"),rs.getInt("importance"),rs.getInt("eventId"),rs.getString("color"));
+                        u.AddEvent(e);
+                    }
                 }
 
             }
-        }catch(SQLException e){
-            Log.d("ERROR","SQL Exception " + e.getMessage());
-        }catch (ClassNotFoundException e){
-            Log.d("ERROR","class not found Exception " + e.getMessage());
+        }catch(SQLException sqle){
+            Log.d("ERROR","SQL Exception " + sqle.getMessage());
+        }catch (ClassNotFoundException cnfe){
+            Log.d("ERROR","class not found Exception " + cnfe.getMessage());
         }finally {
             this.c.callback(isLoggedIn,u);
         }
