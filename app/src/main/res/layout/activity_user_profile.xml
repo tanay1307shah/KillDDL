@@ -33,17 +33,17 @@
         tools:text="Name:" />
 
     <TextView
-        android:id="@+id/name_val_pro"
+        android:id="@+id/name_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/gender_val_pro"
+        android:layout_above="@+id/gender_value"
         android:layout_marginStart="14dp"
         android:layout_marginBottom="21dp"
-        android:layout_toEndOf="@+id/gender_val_pro"
+        android:layout_toEndOf="@+id/gender_value"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/gender_val_pro"
+        android:id="@+id/gender_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/name_pro"
@@ -56,8 +56,8 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gender_val_pro"
-        android:layout_alignStart="@+id/gender_val_pro"
+        android:layout_below="@+id/gender_value"
+        android:layout_alignStart="@+id/gender_value"
         android:layout_marginStart="27dp"
         android:layout_marginTop="253dp"
         android:text="Email" />

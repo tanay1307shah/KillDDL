@@ -43,9 +43,10 @@ public class LoginActivity extends AppCompatActivity {
     private String Password;
     private CallbackManager callbackManager;
 
-    TextView genderTextView;
-    TextView nameTextView;
-    ImageView imageView;
+    String Name= "";
+    String gender="";
+    String user_id="";
+
 
 
 
@@ -66,9 +67,6 @@ public class LoginActivity extends AppCompatActivity {
 
         loginWithFB();
 
-        genderTextView = (TextView)findViewById(R.id.gender_val_pro);
-        nameTextView = (TextView) findViewById(R.id.name_val_pro);
-        imageView = findViewById(R.id.imageView2);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 });
                         Bundle parameters = new Bundle();
-                        parameters.putString("fields","id,first_name,last_name,email,gender");
+                        parameters.putString("fields","id,name,email,gender");
                         request.setParameters(parameters);
                         request.executeAsync();
 
@@ -146,37 +144,28 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
     protected void storeData(JSONObject object){
-        String id = null;
         try {
-            id = object.getString("id");
+            user_id = object.getString("id");
         } catch (JSONException e1) {
             e1.printStackTrace();
         }
         URL profile_pic;
         try {
-            profile_pic = new URL("https://graph.facebook.com/" + id + "/picture?type=large");
+            profile_pic = new URL("https://graph.facebook.com/" + user_id + "/picture?type=large");
             Log.i("profile_pic", profile_pic + "");
             //bundle.putString("profile_pic", profile_pic.toString());
+            Log.d("print val ", profile_pic.toString());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        if (object.has("first_name")){
-            String first_name = "a";
+        if (object.has("name")){
             try {
-                first_name = object.getString("first_name");
+                Name = object.getString("name");
             } catch (JSONException e1) {
                 e1.printStackTrace();
             }
-            Log.d("print val ", first_name);
-            nameTextView.setText(first_name);
-        }
-        if (object.has("last_name")){
-            try {
-                String last_name = object.getString("last_name");
-            } catch (JSONException e1) {
-                e1.printStackTrace();
-            }
+            Log.d("print val ", Name);
         }
         if (object.has("gender")){
             String gender = "a";
@@ -189,8 +178,8 @@ public class LoginActivity extends AppCompatActivity {
             //genderTextView.setText(gender);
         }
 
-    }
 
+    }
 
 
     @Override
