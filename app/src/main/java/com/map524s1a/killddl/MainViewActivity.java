@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainViewActivity extends AppCompatActivity {
@@ -35,9 +36,9 @@ public class MainViewActivity extends AppCompatActivity {
     private Switch s;
     private FloatingActionButton addBtn;
 
-    private String month;
-    private String date;
-    private String year;
+    private int month;
+    private int date;
+    private int year;
     private String notify;
     private String eventNameString;
     private String descripString;
@@ -48,6 +49,7 @@ public class MainViewActivity extends AppCompatActivity {
     private String[] notifyArr;
 
     private User user;
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -109,7 +111,7 @@ public class MainViewActivity extends AppCompatActivity {
         yearArr = getResources().getStringArray(R.array.yearArr);
         notifyArr = getResources().getStringArray(R.array.notArrify);
 
-
+        
 
 
 
@@ -151,7 +153,7 @@ public class MainViewActivity extends AppCompatActivity {
                 dateSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        date = dateArr[position];
+                        date = position;
                     }
 
                     @Override
@@ -163,7 +165,7 @@ public class MainViewActivity extends AppCompatActivity {
                 monthSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        month = monthArr[position];
+                        month = position;
                     }
 
                     @Override
@@ -175,7 +177,7 @@ public class MainViewActivity extends AppCompatActivity {
                 yearSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        year = yearArr[position];
+                        year = Integer.parseInt(yearArr[position]);
                     }
 
                     @Override
@@ -206,18 +208,38 @@ public class MainViewActivity extends AppCompatActivity {
                 addB.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(),"New com.map524s1a.killddl.Event Added!", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(getApplicationContext(),"New com.map524s1a.killddl.Event Added!", Toast.LENGTH_SHORT).show();
                         // do event
-                        eventNameString = eventName.toString();
-                        descripString = description.toString();
-                        Date dueDate = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(date));
-                        //make the rest of these member variables here
+                        eventNameString = eventName.getText().toString();
+                        descripString = description.getText().toString();
+                        Date d = new Date(year,month,date);
+//                        addEventThread aet = new addEventThread(1,
+//                                eventNameString,
+//                                "",
+//                                descripString,
+//                                d,
+//                                1,
+//                                1,
+//                                new Date(),
+//                                new addEventResponse() {
+//                                    @Override
+//                                    public void addEventCallback(boolean eventAdded, Event e) {
+//                                        if(eventAdded){
+//                                            EventSingleton.get(getApplicationContext()).addEventSingleton(e);
+//                                            Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
+//                                        }
+//
+//                                    }
+//                                }
+//                        );
+//                        aet.start();
+                        Event e = new Event(eventNameString,descripString,d,new Date(),1,1,1,"");
+                        EventSingleton.get(getApplicationContext()).addEventSingleton(e);
+                        Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
 
-                        //Event newEvent = new Event(eventNameString, descripString, dueDate, 1 , 1); // last two parameters are frequency and importance
-                        //user.AddEvent(newEvent);
 
-                        //addEventThread eventThead = new addEventThread(eventNameString, color, descripString, dueDate, frequency, importance, _id,  time, c, user);
                     }
+
                 });
                 builder.setView(mView);
                 AlertDialog dialog =  builder.create();

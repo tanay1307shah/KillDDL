@@ -29,6 +29,8 @@ public class DailyFragment extends Fragment {
 
     private ListView lv;
 
+    private boolean iSFirst = true;
+
     private EventListAdapter adapter;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,11 +43,17 @@ public class DailyFragment extends Fragment {
         View fm_layout = inflater.inflate(R.layout.activity_daily,container,false);
         lv = fm_layout.findViewById(R.id.listView);
 
-        Event e = new Event("Kill the app", "", new Date(), new Date(), 1,1,1,"");
-        EventSingleton.get(getApplicationContext()).addEventSingleton(e);
-        List<Event> shops = EventSingleton.get(getApplicationContext()).getEvents();
-        adapter = new EventListAdapter(getApplicationContext(), 0, shops);
-        lv.setAdapter(adapter);
+        if(iSFirst){
+//            Event e = new Event("Kill the app", "", new Date(), new Date(), 1,1,1,"");
+//            EventSingleton.get(getApplicationContext()).addEventSingleton(e);
+
+            List<Event> events = EventSingleton.get(getApplicationContext()).getEvents();
+            adapter = new EventListAdapter(getApplicationContext(), 0, events);
+            lv.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            iSFirst = false;
+        }
+
 
         return fm_layout;
     }

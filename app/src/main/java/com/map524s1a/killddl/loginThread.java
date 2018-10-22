@@ -36,7 +36,7 @@ public class loginThread extends Thread {
         Event e = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.0.11:3306/smile?user=root&password=tShah0713!");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.0.11:3306/killddl?user=root&password=tShah0713!");
 
             PreparedStatement ps = null;
             ps = conn.prepareStatement("SELECT * FROM Users WHERE email= ? and pwd = ?");
