@@ -1,7 +1,9 @@
 package com.map524s1a.killddl;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.map524s1a.killddl.DailyFragment.*;
 
 /**
  * Created by tanay on 10/15/2018.
@@ -17,6 +26,9 @@ import android.view.ViewGroup;
 
 public class MonthlyFragment extends Fragment {
 
+
+    private DailyFragment.EventListAdapter adapter;
+    private ListView lv2;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +38,14 @@ public class MonthlyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View fm_layout = inflater.inflate(R.layout.activity_monthly,container,false);
+        lv2 = fm_layout.findViewById(R.id.list_view_monthly);
 
 
+        List<Event> events = EventSingleton.get(getApplicationContext()).getEvents();
+
+//        adapter = new DailyFragment.EventListAdapter(getApplicationContext(), 0, events);
+//        lv2.setAdapter(adapter);
+//        adapter.notifyDataSetChanged();
 //        FragmentManager fm = getFragmentManager();
 //        Fragment f = fm.findFragmentById(R.id.fragment_container_monthly);
 //        FragmentTransaction ft = fm.beginTransaction();
@@ -52,4 +70,6 @@ public class MonthlyFragment extends Fragment {
 
 
     }
+
+
 }

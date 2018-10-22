@@ -22,10 +22,10 @@
         android:id="@+id/name_pro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
         android:layout_alignStart="@+id/imageView2"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="44dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="sans-serif"
         android:text="TextView"
         android:textSize="14sp"
@@ -37,8 +37,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/gender_value"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="21dp"
         android:layout_toEndOf="@+id/gender_value"
         android:text="TextView" />
 
@@ -46,20 +44,17 @@
         android:id="@+id/gender_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name_pro"
         android:layout_alignStart="@+id/name_pro"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="322dp"
+        android:layout_below="@+id/name_pro"
+        android:layout_marginTop="28dp"
         android:text="Gender" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/gender_value"
-        android:layout_alignStart="@+id/gender_value"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="253dp"
+        android:layout_alignEnd="@+id/name_pro"
+        android:layout_centerVertical="true"
         android:text="Email" />
 
     <Button

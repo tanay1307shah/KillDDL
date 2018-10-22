@@ -269,6 +269,7 @@ public class MainViewActivity extends AppCompatActivity {
                     }
                 });
 
+
                 addB.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -299,6 +300,7 @@ public class MainViewActivity extends AppCompatActivity {
 //                        aet.start();
                         Event e = new Event(eventNameString,descripString,d,new Date(),1,1,1,"");
                         EventSingleton.get(getApplicationContext()).addEventSingleton(e);
+                        //dialog.dismiss();
                         Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
 
 
