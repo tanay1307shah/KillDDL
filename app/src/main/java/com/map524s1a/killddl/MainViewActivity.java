@@ -1,5 +1,6 @@
 package com.map524s1a.killddl;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -35,6 +37,9 @@ public class MainViewActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private Switch s;
     private FloatingActionButton addBtn;
+    private TextView monthlyTag;
+    private TextView dailyTag;
+
 
     private int month;
     private int date;
@@ -65,6 +70,8 @@ public class MainViewActivity extends AppCompatActivity {
 
                 case R.id.list:
                     s.setVisibility(View.VISIBLE);
+                    dailyTag.setVisibility(View.VISIBLE);
+                    monthlyTag.setVisibility(View.VISIBLE);
                     if(f == null){
                         f = new DailyFragment();
                         ft.add(R.id.fragment_container,f);
@@ -80,6 +87,8 @@ public class MainViewActivity extends AppCompatActivity {
                     return true;
                 case R.id.profile:
                     s.setVisibility(View.INVISIBLE);
+                    dailyTag.setVisibility(View.INVISIBLE);
+                    monthlyTag.setVisibility(View.INVISIBLE);
                     if(f == null){
                         f = new ProfileFragment();
                         ft.add(R.id.fragment_container,f);
@@ -110,8 +119,63 @@ public class MainViewActivity extends AppCompatActivity {
         monthArr = getResources().getStringArray(R.array.monthArr);
         yearArr = getResources().getStringArray(R.array.yearArr);
         notifyArr = getResources().getStringArray(R.array.notArrify);
+        monthlyTag = findViewById(R.id.monthlyTag);
+        dailyTag = findViewById(R.id.dailyTag);
 
-        
+        dailyTag.setTextColor(getResources().getColor(R.color.black));
+        monthlyTag.setTextColor(getResources().getColor(R.color.white));
+
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+
+
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    // Daily View
+
+                    dailyTag.setTextColor(getResources().getColor(R.color.white));
+                    monthlyTag.setTextColor(getResources().getColor(R.color.black));
+
+
+                    FragmentManager fm = getSupportFragmentManager();
+                    Fragment f = fm.findFragmentById(R.id.fragment_container);
+                    FragmentTransaction ft = fm.beginTransaction();
+                    s.setVisibility(View.VISIBLE);
+                    if(f == null){
+                        f = new DailyFragment();
+                        ft.add(R.id.fragment_container,f);
+                        ft.commit();
+                    }
+                    else {
+                        f = new DailyFragment();
+                        ft.replace(R.id.fragment_container, f);
+                        ft.commit();
+                    }
+                }
+                else{
+                    //Monthly View
+                    dailyTag.setTextColor(getResources().getColor(R.color.black));
+                    monthlyTag.setTextColor(getResources().getColor(R.color.white));
+
+
+                    FragmentManager fm = getSupportFragmentManager();
+                    Fragment f = fm.findFragmentById(R.id.fragment_container);
+                    FragmentTransaction ft = fm.beginTransaction();
+                    if(f == null){
+                        f = new MonthlyFragment();
+                        ft.add(R.id.fragment_container,f);
+                        ft.commit();
+                    }
+                    else {
+                        f = new MonthlyFragment();
+                        ft.replace(R.id.fragment_container, f);
+                        ft.commit();
+                    }
+                }
+            }
+        });
 
 
 

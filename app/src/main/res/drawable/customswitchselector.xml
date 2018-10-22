@@ -28,6 +28,7 @@ android:shape="rectangle"
     android:dither="true"
     android:useLevel="false">
 <gradient
+
 android:startColor="@color/com_facebook_blue"
     android:endColor="@color/com_facebook_blue"
     android:angle="270"/>

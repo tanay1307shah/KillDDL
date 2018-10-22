@@ -70,10 +70,11 @@
         android:layout_marginStart="11dp"
         android:gravity="center_vertical"
         android:text="Monthly"
-        android:textColor="@color/cardview_light_background" />
+        android:id="@+id/monthlyTag"
+         />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/dailyTag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/switch1"
@@ -82,7 +83,7 @@
         android:layout_toEndOf="@+id/floatingActionButton"
         android:gravity="center_vertical"
         android:text="Daily"
-        android:textColor="@color/cardview_dark_background" />
+         />
 
     <!--<LinearLayout-->
         <!--android:layout_width="wrap_content"-->
