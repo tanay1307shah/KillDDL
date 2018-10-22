@@ -56,10 +56,16 @@ public class eventThread extends Thread {
 
             PreparedStatement ps = null;
             //ps = conn.prepareStatement("SELECT * FROM Users WHERE email= ? and pwd = ?");
-            String eventQuery = "INSERT INTO EventsTable (userId, title, description, eventDate, notifyTime, color, important, frequency) VALUES(" + u.getUserID() + ", " + this._eventName + ", " + this._description + ", " + this._dueDate + ", " + this.time + "," + this.color + ", " + this._importance + ", " + this._frequency + ")";
+            String eventQuery = "INSERT INTO EventsTable (userId, title, description, eventDate, notifyTime, color, important, frequency) VALUES(?,?,?,?,?,?,?,?)";
             ps = conn.prepareStatement(eventQuery);
-            //ps.setString(1,email);
-            //ps.setString(2,pswd);
+            ps.setString(1,u.getUserID());
+            ps.setString(2,_eventName);
+            ps.setString(3,_description);
+            ps.setString(4,_dueDate);
+            ps.setString(5,time);
+            ps.setString(6,color);
+            ps.setString(7,_importance);
+            ps.setString(8,_frequency);
             Log.d("DEBUG",email + " " + pswd);
             ResultSet rs = ps.executeQuery();
 
