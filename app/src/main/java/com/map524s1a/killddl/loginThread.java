@@ -36,7 +36,7 @@ public class loginThread extends Thread {
         Event e = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.43.128:3306/smile?user=root&password=tShah0713!&useSSL=false");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.0.11:3306/smile?user=root&password=tShah0713!");
 
             PreparedStatement ps = null;
             ps = conn.prepareStatement("SELECT * FROM Users WHERE email= ? and pwd = ?");
@@ -63,7 +63,6 @@ public class loginThread extends Thread {
                         u.AddEvent(e);
                     }
                 }
-
             }
         }catch(SQLException sqle){
             Log.d("ERROR","SQL Exception " + sqle.getMessage());

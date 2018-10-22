@@ -1,70 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_login">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="59dp"
-        android:layout_height="31dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="30dp"
-        android:text="Name" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="80dp"
-        android:ems="10"
-        android:inputType="date"
-        android:text="Date" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="82dp"
-        android:layout_marginEnd="102dp"
-        android:ems="10"
-        android:inputType="time"
-        android:text="Time" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Description" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/editText2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="222dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Status" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/popbg">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/delBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView"
-        android:layout_centerVertical="true"
-        android:text="Delete" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:text="Delete"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:background="#e5402d"
+        android:textColor="#ffffff"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="13dp"
+        app:srcCompat="@drawable/button_color_picker" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_marginStart="15dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView10"
+        android:layout_marginTop="12dp"
+        android:layout_toEndOf="@+id/imageView"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar"
+        android:elevation="@dimen/cardview_default_elevation" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_alignTop="@+id/imageView3"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/imageView3"
+        android:text="TextView"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageView3"
+        android:layout_below="@+id/imageView3"
+        android:layout_marginTop="19dp"
+        android:text="TextView" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:id="@+id/button6"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_above="@+id/delBtn"
+        android:layout_alignStart="@+id/textView12"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/ic_check_circle_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button6"
+        android:layout_alignTop="@+id/button6"
+        android:layout_toEndOf="@+id/imageView3"
+        android:text="TextView"
+        android:gravity="center_vertical"/>
+
+
 </RelativeLayout>

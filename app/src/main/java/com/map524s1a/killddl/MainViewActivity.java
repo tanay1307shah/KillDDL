@@ -1,5 +1,6 @@
 package com.map524s1a.killddl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -100,7 +101,7 @@ public class MainViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
         Intent I = getIntent();
-        user = (User) I.getSerializableExtra(name:"user");
+        user = (User) I.getSerializableExtra("user");
 
         s = findViewById(R.id.switch1);
         dateArr = getResources().getStringArray(R.array.dateArr);
@@ -215,7 +216,7 @@ public class MainViewActivity extends AppCompatActivity {
                         //Event newEvent = new Event(eventNameString, descripString, dueDate, 1 , 1); // last two parameters are frequency and importance
                         //user.AddEvent(newEvent);
 
-                        addEventThread eventThead = new addEventThread(eventNameString, color, descripString, dueDate, frequency, importance, _id,  time, c, user);
+                        //addEventThread eventThead = new addEventThread(eventNameString, color, descripString, dueDate, frequency, importance, _id,  time, c, user);
                     }
                 });
                 builder.setView(mView);

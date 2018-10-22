@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -40,11 +41,17 @@ public class DailyFragment extends Fragment {
         View fm_layout = inflater.inflate(R.layout.activity_daily,container,false);
         lv = fm_layout.findViewById(R.id.listView);
 
+        Event e = new Event("Kill the app", "", new Date(), new Date(), 1,1,1,"");
+        EventSingleton.get(getApplicationContext()).addEventSingleton(e);
         List<Event> shops = EventSingleton.get(getApplicationContext()).getEvents();
         adapter = new EventListAdapter(getApplicationContext(), 0, shops);
         lv.setAdapter(adapter);
 
         return fm_layout;
+    }
+
+    public void referesh(EventListAdapter adapter){
+        adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -65,7 +72,6 @@ public class DailyFragment extends Fragment {
             if(convertView == null){
                 convertView = getLayoutInflater().inflate(R.layout.list_item,null);
             }
-
             return convertView;
         }
 

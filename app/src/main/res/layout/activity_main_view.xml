@@ -61,6 +61,29 @@
         android:thumb="@drawable/customswitchselector"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/switch1"
+        android:layout_alignStart="@+id/switch1"
+        android:layout_alignTop="@+id/switch1"
+        android:layout_marginStart="11dp"
+        android:gravity="center_vertical"
+        android:text="Monthly"
+        android:textColor="@color/cardview_light_background" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/switch1"
+        android:layout_alignBottom="@+id/switch1"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/floatingActionButton"
+        android:gravity="center_vertical"
+        android:text="Daily"
+        android:textColor="@color/cardview_dark_background" />
+
     <!--<LinearLayout-->
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->

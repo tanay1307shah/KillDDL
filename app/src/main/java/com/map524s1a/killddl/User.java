@@ -46,7 +46,7 @@ public class User  implements Serializable{
         //Call the database addEvent, which will convert the event into the proper form_db.addEvent(eventName,description,dueDate,frequency,importance);
     }
 
-    public void getUserID(){
+    public int getUserID(){
         return this.userId;
     }
 }

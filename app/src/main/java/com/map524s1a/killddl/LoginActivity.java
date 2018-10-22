@@ -83,10 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                             i.putExtra("user",u);
                             startActivity(i);
                         }else{
-                            Toast.makeText(getApplicationContext(),"Wrong Combination\n" +emailAdd.toString() + "\n" + Password.toString() , Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getApplicationContext(),"Wrong Combination\n" +emailAdd.toString() + "\n" + Password.toString() , Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
+                lt.start();
 
                 if(emailAdd.equalsIgnoreCase("killddl@usc.edu") && Password.equalsIgnoreCase("wegotit")){
                     Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
