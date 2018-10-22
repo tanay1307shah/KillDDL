@@ -99,6 +99,8 @@ public class MainViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
+        Intent I = getIntent();
+        user = (User) I.getSerializableExtra(name:"user");
 
         s = findViewById(R.id.switch1);
         dateArr = getResources().getStringArray(R.array.dateArr);
@@ -208,9 +210,12 @@ public class MainViewActivity extends AppCompatActivity {
                         eventNameString = eventName.toString();
                         descripString = description.toString();
                         Date dueDate = new Date(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(date));
+                        //make the rest of these member variables here
 
                         //Event newEvent = new Event(eventNameString, descripString, dueDate, 1 , 1); // last two parameters are frequency and importance
                         //user.AddEvent(newEvent);
+
+                        addEventThread eventThead = new addEventThread(eventNameString, color, descripString, dueDate, frequency, importance, _id,  time, c, user);
                     }
                 });
                 builder.setView(mView);
