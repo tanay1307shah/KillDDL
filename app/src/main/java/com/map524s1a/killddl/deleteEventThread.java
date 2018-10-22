@@ -19,20 +19,12 @@ interface response{
 public class deleteEventThread extends Thread {
 
     response c;
-    private eventID; 
+    private int eventID;
 
 
-    public eventThread(String _eventName, String color, String _description, Date _dueDate, int _frequency, int _importance, int _id, Date time, response c, User u){
-        this._eventName = _eventName;
-        this.color = color;
-        this._description = _description;
-        this._dueDate = _dueDate;
-        this._frequency = _frequency;
-        this._importance = _importance;
-        this._id = _id;
-        this.time = time;
+    public eventThread(int eventID, response c){
+        this.eventID = eventID;
         this.c = c;
-        this.u = u;
     }
 
     public void run(){
@@ -48,10 +40,9 @@ public class deleteEventThread extends Thread {
 
             PreparedStatement ps = null;
             //ps = conn.prepareStatement("SELECT * FROM Users WHERE email= ? and pwd = ?");
-            String eventQuery = "INSERT INTO EventsTable (userId, title, description, eventDate, notifyTime, color, important, frequency) VALUES(" + u.getUserID() + ", " + this._eventName + ", " + this._description + ", " + this._dueDate + ", " + this.time + "," + this.color + ", " + this._importance + ", " + this._frequency + ")";
-            ps = conn.prepareStatement(eventQuery);
-            //ps.setString(1,email);
-            //ps.setString(2,pswd);
+            //String eventQuery = "DELETE FROM EventsTable WHERE email= ? and pwd = ?";
+            ps = conn.prepareStatement("DELETE FROM EventsTable WHERE eventID= ?");
+            ps.setString(1,this.eventID);
             Log.d("DEBUG",email + " " + pswd);
             ResultSet rs = ps.executeQuery();
 
