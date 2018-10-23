@@ -20,6 +20,10 @@ public class EventSingleton {
         Events = new ArrayList<>();
     }
 
+    public  void deleteEvent(Event e){
+        Events.remove(e);
+    }
+
     public static EventSingleton get(Context c){
         if(sEventSingleton == null){
             sEventSingleton = new EventSingleton(c);

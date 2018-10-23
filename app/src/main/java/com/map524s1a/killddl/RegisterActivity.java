@@ -41,6 +41,7 @@ public class RegisterActivity  extends AppCompatActivity{
     private String fName;
     private String emailId;
     private String pwd;
+    private String imgUrl = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,9 +102,19 @@ public class RegisterActivity  extends AppCompatActivity{
 
 
                     if(gender != null && fName != null && emailId != null && pwd != null){
-                        Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
-                        //put user object in intent
-                        startActivity(i);
+
+                        joinUserThread jt = new joinUserThread(emailId, pwd, fName, gender, imgUrl, new addUserResponse() {
+                            @Override
+                            public void addUserCallback(User u) {
+                                Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
+                                i.putExtra("user",u);
+                                startActivity(i);
+                            }
+                        });
+
+
+
+
                     }else{
                         Toast.makeText(getApplicationContext(),"Please fill all the data correctly", Toast.LENGTH_LONG).show();
                     }
@@ -123,7 +134,9 @@ public class RegisterActivity  extends AppCompatActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE){
             Log.d("IMAGE URI" , data.getData().toString());
+            imgUrl = data.getData().toString();
             imgView.setImageURI(data.getData());
+
         }
     }
 

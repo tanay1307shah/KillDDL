@@ -36,7 +36,7 @@ public class loginThread extends Thread {
         Event e = null;
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.43.141:3306/killddl?user=root&password=Equyi86V6V&useSSL=false");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://192.168.0.11:3306/killddl?user=root&password=tShah0713!&useSSL=false");
 
             PreparedStatement ps = null;
             ps = conn.prepareStatement("SELECT * FROM Users WHERE email= ? and pwd = ?");
@@ -59,7 +59,7 @@ public class loginThread extends Thread {
 
                 if(rs != null){
                     while(rs.next()){
-                        e =  new Event(rs.getString("title"),rs.getString("description"),rs.getDate("eventDate"),rs.getTime("notifyTime"),rs.getInt("frequency"),rs.getInt("importance"),rs.getInt("eventId"),rs.getString("color"));
+                        e =  new Event(rs.getString("title"),rs.getString("description"),rs.getString("timeStr"),rs.getDate("eventDate"),rs.getTime("notifyTime"),rs.getInt("frequency"),rs.getInt("importance"),rs.getInt("eventId"),rs.getString("color"));
                         u.AddEvent(e);
                     }
                 }

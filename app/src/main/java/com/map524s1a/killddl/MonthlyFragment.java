@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import java.util.List;
@@ -27,8 +28,8 @@ import static com.map524s1a.killddl.DailyFragment.*;
 public class MonthlyFragment extends Fragment {
 
 
-    private DailyFragment.EventListAdapter adapter;
-    private ListView lv2;
+    //private DailyFragment.EventListAdapter adapter;
+    //private FrameLayout f2;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +39,30 @@ public class MonthlyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View fm_layout = inflater.inflate(R.layout.activity_monthly,container,false);
-        lv2 = fm_layout.findViewById(R.id.list_view_monthly);
+        //lv2 = fm_layout.findViewById(R.id.list_view_monthly);
 
 
         List<Event> events = EventSingleton.get(getApplicationContext()).getEvents();
+
+
+
+        FragmentManager fm = getChildFragmentManager();
+        Fragment f = fm.findFragmentById(R.id.list_frag_container);
+        FragmentTransaction ft = fm.beginTransaction();
+        if(f == null){
+            f = new DailyFragment();
+            ft.add(R.id.list_frag_container,f);
+            ft.commit();
+        }
+        else {
+            f = new DailyFragment();
+            ft.replace(R.id.list_frag_container, f);
+            ft.commit();
+        }
+
+
+
+
 
 //        adapter = new DailyFragment.EventListAdapter(getApplicationContext(), 0, events);
 //        lv2.setAdapter(adapter);

@@ -28,10 +28,10 @@ public class addEventThread extends Thread {
     private int _importance; // importance is from 1 to 3
     private int userId;
     private Date time;
+    private String timeStr;
 
-
-    public addEventThread(int userId,String _eventName, String color, String _description, Date _dueDate, int _frequency, int _importance, Date time, addEventResponse c) {
-        Log.d("DEBUG", "FUK ME");
+    public addEventThread(int userId,String timeStr,String _eventName, String color, String _description, Date _dueDate, int _frequency, int _importance, Date time, addEventResponse c) {
+        //Log.d("DEBUG", "FUK ME");
         this.userId = userId;
         this._eventName = _eventName;
         this.color = color;
@@ -69,7 +69,7 @@ public class addEventThread extends Thread {
             //Log.d("DEBUG", email + " " + pswd);
             int id = ps.executeUpdate();
             eventAdded = true;
-            e = new Event(_eventName,_description,_dueDate,time,_frequency,_importance,id,"");
+            e = new Event(_eventName,_description,timeStr,_dueDate,time,_frequency,_importance,id,"");
 
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();

@@ -14,16 +14,22 @@ public class Event implements Serializable {
     private int _importance; // importance is from 1 to 3
     private int _id;
     private Date time;
+    private String timeStr;
 
-    public Event(String eventName, String description, Date dueDate, Date time, int frequency, int importance, int id,String color){
+    public Event(String eventName, String description,String timeStr, Date dueDate, Date time, int frequency, int importance, int id,String color){
         _eventName = eventName;
         this.time = time;
+        this.timeStr = timeStr;
         _description = description;
         _dueDate = dueDate;
         _frequency = frequency;
         _importance = importance;
         _id = id;
         this.color = color;
+    }
+
+    public String getTimeStr(){
+        return this.timeStr;
     }
 
     public int get_id() {

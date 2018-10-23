@@ -17,6 +17,7 @@ create table EventsTable(
     userId INT(10) not null unique,
     title Varchar(100) not null,
     description varchar(500),
+    timeStr varchar(50) not null,
     eventDate date not null,
 	notifyTime timestamp not null,
     color varchar(7) not null,

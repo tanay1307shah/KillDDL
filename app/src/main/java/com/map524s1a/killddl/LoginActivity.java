@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(i);
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Wrong Combination\n" +emailAdd.toString() + "\n" + Password.toString() , Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"Wrong Combination\n" +emailAdd.toString() + "\n" + Password.toString() , Toast.LENGTH_SHORT).show();
                 }
             }
         });

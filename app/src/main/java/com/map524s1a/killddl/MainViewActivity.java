@@ -1,9 +1,11 @@
 package com.map524s1a.killddl;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -13,7 +15,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -21,13 +25,19 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class MainViewActivity extends AppCompatActivity {
     // Firebase instance variables
@@ -39,6 +49,11 @@ public class MainViewActivity extends AppCompatActivity {
     private FloatingActionButton addBtn;
     private TextView monthlyTag;
     private TextView dailyTag;
+    private TextView timeVal;
+
+
+    private Button detailsBtn;
+    private Button delbtn;
 
 
     private int month;
@@ -53,9 +68,14 @@ public class MainViewActivity extends AppCompatActivity {
     private String[] yearArr;
     private String[] notifyArr;
 
+    private int hour;
+    private int min;
+
+    private String time;
+
     private User user;
 
-
+   private DailyFragment.EventListAdapter adapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -122,6 +142,8 @@ public class MainViewActivity extends AppCompatActivity {
         monthlyTag = findViewById(R.id.monthlyTag);
         dailyTag = findViewById(R.id.dailyTag);
 
+
+
         dailyTag.setTextColor(getResources().getColor(R.color.black));
         monthlyTag.setTextColor(getResources().getColor(R.color.white));
 
@@ -177,9 +199,6 @@ public class MainViewActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         mTextMessage = (TextView) findViewById(R.id.message);
         addBtn = findViewById(R.id.floatingActionButton);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -211,6 +230,7 @@ public class MainViewActivity extends AppCompatActivity {
                 Spinner yearSpin = mView.findViewById(R.id.spinner_year);
                 Spinner notifySpin = mView.findViewById(R.id.spinner_notify);
                 ImageButton colorPick = mView.findViewById(R.id.color_picker);
+                timeVal = mView.findViewById(R.id.t_val);
                 final TextView eventName = mView.findViewById(R.id.topic_val);
                 final TextView description = mView.findViewById(R.id.des_val);
 
@@ -270,6 +290,35 @@ public class MainViewActivity extends AppCompatActivity {
                 });
 
 
+                timeVal.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainViewActivity.this);
+                        View mView = getLayoutInflater().inflate(R.layout.dialog_time_picker,null);
+                        final TimePicker  tp = mView.findViewById(R.id.timePicker);
+                        Button db = mView.findViewById(R.id.doneBtn);
+
+                        db.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                hour = tp.getHour();
+                                min = tp.getMinute();
+                                if(hour < 12){
+                                    time = hour + ":" + min + " AM";
+                                }else{
+                                    time = hour +":" + min + " PM";
+                                }
+                                timeVal.setText(time);
+                            }
+                        });
+                        builder.setView(mView);
+                        AlertDialog dialog =  builder.create();
+                        dialog.show();
+
+                    }
+                });
+
+
                 addB.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -278,29 +327,35 @@ public class MainViewActivity extends AppCompatActivity {
                         eventNameString = eventName.getText().toString();
                         descripString = description.getText().toString();
                         Date d = new Date(year,month,date);
-//                        addEventThread aet = new addEventThread(1,
-//                                eventNameString,
-//                                "",
-//                                descripString,
-//                                d,
-//                                1,
-//                                1,
-//                                new Date(),
-//                                new addEventResponse() {
-//                                    @Override
-//                                    public void addEventCallback(boolean eventAdded, Event e) {
-//                                        if(eventAdded){
-//                                            EventSingleton.get(getApplicationContext()).addEventSingleton(e);
-//                                            Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
-//                                        }
-//
-//                                    }
-//                                }
-//                        );
-//                        aet.start();
-                        Event e = new Event(eventNameString,descripString,d,new Date(),1,1,1,"");
-                        EventSingleton.get(getApplicationContext()).addEventSingleton(e);
+                        if(user != null){
+                            addEventThread aet = new addEventThread(user.getUserID(),
+                                    time,
+                                    eventNameString,
+                                    "",
+                                    descripString,
+                                    d,
+                                    1,
+                                    1,
+                                    new Date(),
+                                    new addEventResponse() {
+                                        @Override
+                                        public void addEventCallback(boolean eventAdded, Event e) {
+                                            if(eventAdded){
+                                                EventSingleton.get(getApplicationContext()).addEventSingleton(e);
+                                                Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
+                                    }
+                            );
+                            aet.start();
+                        }else{
+                            Event e = new Event(eventNameString,descripString,time,d,new Date(),1,1,1,"");
+                            EventSingleton.get(getApplicationContext()).addEventSingleton(e);
+                        }
+
                         //dialog.dismiss();
+                       // adapter.notifyDataSetChanged();
                         Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
 
 
@@ -317,5 +372,7 @@ public class MainViewActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
+
 
 }

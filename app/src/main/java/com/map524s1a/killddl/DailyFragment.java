@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,10 @@ public class DailyFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public EventListAdapter getAdapter(){
+        return adapter;
     }
 
     @Nullable
@@ -81,7 +86,7 @@ public class DailyFragment extends Fragment {
             if(convertView == null){
                 convertView = getLayoutInflater().inflate(R.layout.list_item,null);
             }
-
+            CardView cv = convertView.findViewById(R.id.card);
             TextView titleV = convertView.findViewById(R.id.evetitle);
             TextView timeV = convertView.findViewById(R.id.timeval);
             Button statusBtn = convertView.findViewById(R.id.statusBtn);
@@ -92,8 +97,9 @@ public class DailyFragment extends Fragment {
             delbtn.setVisibility(View.INVISIBLE);
             final Event e = getItem(position);
 
-            titleV.setText(e.get_eventName());
-            titleV.setOnClickListener(new View.OnClickListener() {
+            timeV.setText(e.getTimeStr());
+
+            cv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(detailsBtn.getVisibility() == View.INVISIBLE && delbtn.getVisibility() == View.INVISIBLE) {
@@ -106,21 +112,65 @@ public class DailyFragment extends Fragment {
                     }
                 }
             });
+            titleV.setText(e.get_eventName());
 
-                detailsBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(),"lol", Toast.LENGTH_SHORT).show();
-                        AlertDialog.Builder builder = new AlertDialog.Builder(DailyFragment.this.getContext());
-                        View mView = getLayoutInflater().inflate(R.layout.activity_event_view, null);
-                        builder.setView(mView);
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+
+
+            delbtn.setOnClickListener(new View.OnClickListener() {
+                boolean isRun = false;
+                @Override
+                public void onClick(View v) {
+                    deleteEventThread der = new deleteEventThread(e.get_id(), new deleteThreadresponse() {
+                        @Override
+                        public void callback(boolean eventDeleted) {
+                            isRun = true;
+                            EventSingleton.get(getApplicationContext()).deleteEvent(e);
+                            adapter.clear();
+                            adapter.addAll(EventSingleton.get(getApplicationContext()).getEvents());
+                            referesh(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                    if(!isRun){
+                        EventSingleton.get(getApplicationContext()).deleteEvent(e);
+                        adapter.clear();
+                        adapter.addAll(EventSingleton.get(getApplicationContext()).getEvents());
+                        referesh(adapter);
+                        adapter.notifyDataSetChanged();
                     }
-                });
+
+                }
+            });
+
+            detailsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(getApplicationContext(),"lol", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DailyFragment.this.getContext());
+                    View mView = getLayoutInflater().inflate(R.layout.activity_event_view, null);
+
+                    Button removeBtn  = mView.findViewById(R.id.delBtn);
+                    removeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            EventSingleton.get(getApplicationContext()).deleteEvent(e);
+                            adapter.clear();
+                            adapter.addAll(EventSingleton.get(getApplicationContext()).getEvents());
+                            referesh(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+
+
+                    builder.setView(mView);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();}
+            });
 
             return convertView;
         }
 
     }
+
+
 }
