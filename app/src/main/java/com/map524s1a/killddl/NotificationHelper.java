@@ -39,8 +39,8 @@ public class NotificationHelper extends ContextWrapper {
 
     public Notification.Builder getChannelNotification(){
         return new Notification.Builder(getApplicationContext(),CHANNEL_ID )
-                .setContentText("body")
-                .setContentTitle("title")
+                .setContentText("This notification is to remind you that you have events scheduled")
+                .setContentTitle("Reminder")
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setAutoCancel(true);
     }

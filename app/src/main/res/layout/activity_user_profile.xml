@@ -65,5 +65,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="227dp"
         android:layout_marginEnd="84dp"
-        android:text="Button" />
+        android:background="@drawable/button_design_fb"
+        android:text="Check Events" />
 </RelativeLayout>
