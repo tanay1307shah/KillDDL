@@ -11,6 +11,9 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //espresso
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -43,5 +46,11 @@ dependencies {
     compile "com.google.android.gms:play-services-gcm:10.2.1"
     compile 'com.firebaseui:firebase-ui-database:0.6.2'
     compile 'com.facebook.android:facebook-android-sdk:4.37.0'
+
+    //espresso
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
 
 }
