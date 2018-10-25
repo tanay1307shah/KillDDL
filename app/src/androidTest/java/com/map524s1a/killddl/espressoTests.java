@@ -88,6 +88,7 @@ public class espressoTests {
         intended(hasComponent(RegisterActivity.class.getName()));
     }
 
+    // test 4 TODO
     @Test
     public void add_event() {
         // Type text and then press the button.
@@ -100,7 +101,6 @@ public class espressoTests {
                 .perform(typeText(password), closeSoftKeyboard());
 
         onView(withId(R.id.LoginBtn)).perform(click());
-
 
     }
 }
