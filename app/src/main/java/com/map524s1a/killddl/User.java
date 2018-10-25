@@ -49,4 +49,6 @@ public class User  implements Serializable{
     public int getUserID(){
         return this.userId;
     }
+    public String getEmail(){return _email;}
+    public List<Event> getEvents(){return _events;}
 }
