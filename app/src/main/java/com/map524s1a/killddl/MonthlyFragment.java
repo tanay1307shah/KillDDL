@@ -40,12 +40,7 @@ public class MonthlyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View fm_layout = inflater.inflate(R.layout.activity_monthly,container,false);
         //lv2 = fm_layout.findViewById(R.id.list_view_monthly);
-
-
         List<Event> events = EventSingleton.get(getApplicationContext()).getEvents();
-
-
-
         FragmentManager fm = getChildFragmentManager();
         Fragment f = fm.findFragmentById(R.id.list_frag_container);
         FragmentTransaction ft = fm.beginTransaction();

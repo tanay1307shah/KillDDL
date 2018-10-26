@@ -1,5 +1,6 @@
 package com.map524s1a.killddl;
 
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
@@ -16,6 +17,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.matcher.ComponentNameMatchers.hasClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -58,7 +60,7 @@ public class espressoTests {
 
         onView(withId(R.id.LoginBtn)).perform(click());
 
-        // Check that the view was changed.
+        // Check that the view was changed to MainViewActivity which means user successfully logged in.
         intended(hasComponent(MainViewActivity.class.getName()));
     }
 
@@ -76,7 +78,7 @@ public class espressoTests {
 
         onView(withId(R.id.LoginBtn)).perform(click());
 
-        // Check that the view is the same.
+        // Check that the view is still LoginActivity which means user was unsuccessful in logging in.
         intended(hasComponent(LoginActivity.class.getName()));
     }
 
@@ -99,8 +101,7 @@ public class espressoTests {
                 .perform(typeText(email), closeSoftKeyboard());
         onView(withId(R.id.pswd))
                 .perform(typeText(password), closeSoftKeyboard());
-
         onView(withId(R.id.LoginBtn)).perform(click());
-
+        // on main view page
     }
 }
