@@ -21,6 +21,4 @@ public class TestUser {
         User testUser = new User(1, "Groot", "meow");
         assertTrue(testUser.getEvents().isEmpty());
     }
-
-
 }
