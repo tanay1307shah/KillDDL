@@ -119,7 +119,7 @@ public class espressoTests {
 
         onView(withId(R.id.dailyTag)).perform(click());
 
-        intended(hasComponent(DailyFragment.class.getName()));
+        intended(hasComponent(MainViewActivity.class.getName()));
     }
 
     @Test
@@ -137,6 +137,6 @@ public class espressoTests {
         onView(withId(R.id.dailyTag)).perform(click());
         onView(withId(R.id.monthlyTag)).perform(click());
 
-        intended(hasComponent(MonthlyFragment.class.getName()));
+        intended(hasComponent(MainViewActivity.class.getName()));
     }
 }
