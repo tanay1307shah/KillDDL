@@ -19,12 +19,15 @@ public class NotificationHelper extends ContextWrapper {
     private static final String CHANNEL_Name = "name";
     private NotificationManager manager;
     private String message;
+    private String title;
+
 
     public NotificationHelper(Context base){
         super(base);
         createChannels();
         message = "";
     }
+
 
     public void createChannels(){
         //Importance_default
@@ -40,6 +43,16 @@ public class NotificationHelper extends ContextWrapper {
 
     public void setMessage(String message){
         this.message = message;
+    }
+    public String getMessage(){
+        return message;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+    public String getTitle(){
+        return title;
     }
     public NotificationManager getManager(){
         if(manager==null)
