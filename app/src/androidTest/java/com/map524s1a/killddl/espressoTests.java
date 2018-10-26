@@ -103,4 +103,39 @@ public class espressoTests {
         onView(withId(R.id.LoginBtn)).perform(click());
 
     }
+
+    @Test
+    public void switchViews(){
+        String email = "killddl@usc.edu";
+        String password = "wegotit";
+
+        onView(withId(R.id.email))
+                .perform(typeText(email), closeSoftKeyboard());
+        onView(withId(R.id.pswd))
+                .perform(typeText(password), closeSoftKeyboard());
+
+        onView(withId(R.id.LoginBtn)).perform(click());
+
+        onView(withId(R.id.dailyTag)).perform(click());
+
+        intended(hasComponent(DailyFragment.class.getName()));
+    }
+
+    @Test
+    public void switchViews2(){
+        String email = "killddl@usc.edu";
+        String password = "wegotit";
+
+        onView(withId(R.id.email))
+                .perform(typeText(email), closeSoftKeyboard());
+        onView(withId(R.id.pswd))
+                .perform(typeText(password), closeSoftKeyboard());
+
+        onView(withId(R.id.LoginBtn)).perform(click());
+
+        onView(withId(R.id.dailyTag)).perform(click());
+        onView(withId(R.id.monthlyTag)).perform(click());
+
+        intended(hasComponent(MonthlyFragment.class.getName()));
+    }
 }
