@@ -165,7 +165,7 @@ public class espressoTests {
         onView(withId(R.id.card))
                 .check(doesNotExist());
     }
-    // test 9
+    // test 9 todo fix me
     @Test
     public void add_multiple_events(){
         espressoLogin();
@@ -183,6 +183,45 @@ public class espressoTests {
         onView(withId(R.id.card))
                 .check(matches(isDisplayed()));
     }
-    // test 10
+    // test 10 todo
+    @Test
+    public void todo(){
 
+    }
+    // test 11
+    @Test
+    public void switchViews(){
+        String email = "killddl@usc.edu";
+        String password = "wegotit";
+
+        onView(withId(R.id.email))
+                .perform(typeText(email), closeSoftKeyboard());
+        onView(withId(R.id.pswd))
+                .perform(typeText(password), closeSoftKeyboard());
+
+        onView(withId(R.id.LoginBtn)).perform(click());
+
+        onView(withId(R.id.dailyTag)).perform(click());
+
+        intended(hasComponent(MainViewActivity.class.getName()));
+    }
+
+    // test 12
+    @Test
+    public void switchViews2(){
+        String email = "killddl@usc.edu";
+        String password = "wegotit";
+
+        onView(withId(R.id.email))
+                .perform(typeText(email), closeSoftKeyboard());
+        onView(withId(R.id.pswd))
+                .perform(typeText(password), closeSoftKeyboard());
+
+        onView(withId(R.id.LoginBtn)).perform(click());
+
+        onView(withId(R.id.dailyTag)).perform(click());
+        onView(withId(R.id.monthlyTag)).perform(click());
+
+        intended(hasComponent(MainViewActivity.class.getName()));
+    }
 }
