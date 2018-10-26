@@ -1,6 +1,6 @@
 # KillDDL
 
-Name: Tanay Shah, Judy Zhang, Jin Ruan, Srishti Minglani, Kartik Mathur
+Name: Tanay Shah, Judy Zhang, Jin Ruan, Srishti Miglani, Kartik Mathur
 
 For Database:
 	Run databse.sql file in MySQL Workbench and change all the files with 'Thread' in name's connection URL with your IP and server login credentials.
