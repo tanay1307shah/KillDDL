@@ -67,4 +67,13 @@
         android:layout_marginEnd="84dp"
         android:background="@drawable/button_design_fb"
         android:text="Check Events" />
+
+    <Button
+        android:id="@+id/emailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="169dp"
+        android:text="Send Email" />
 </RelativeLayout>

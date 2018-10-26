@@ -224,4 +224,49 @@ public class espressoTests {
 
         intended(hasComponent(MainViewActivity.class.getName()));
     }
+    // test 13
+    @Test
+    public void check_events_test_no_events(){
+        espressoLogin();
+
+        onView(withId(R.id.profile)).perform(click());
+        // event doesn't exist
+        onView(withId(R.id.button3)).perform(click());
+        onView(withId(R.id.button3)).perform(click());
+        onView(withId(R.id.button3)).perform(click());
+        //intended(hasComponent(ProfileFragment.class.getName()));
+    }
+    // test 14
+    @Test
+    public void check_events_test_with_events(){
+        espressoLogin();
+        // add an event
+        onView(withId(R.id.floatingActionButton)).perform(click());
+        espressoAddEvent();
+
+        //Go to Profile
+        onView(withId(R.id.profile)).perform(click());
+
+        // event exists so we check if the current time relates to it
+        onView(withId(R.id.button3)).perform(click());
+
+        onView(withId(R.id.button3)).perform(click());
+
+        onView(withId(R.id.button3)).perform(click());
+
+    }
+    @Test
+    public void send_email_test(){
+        espressoLogin();
+
+        //Go to Profile
+        onView(withId(R.id.profile)).perform(click());
+
+        // event exists so we check if the current time relates to it
+        onView(withId(R.id.emailButton)).perform(click());
+        // go back
+        Espresso.pressBack();
+
+
+    }
 }

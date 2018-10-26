@@ -6,15 +6,24 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.ContextWrapper;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class NotificationHelper extends ContextWrapper {
     private static final String CHANNEL_ID = "id";
     private static final String CHANNEL_Name = "name";
     private NotificationManager manager;
+    private String message;
+
     public NotificationHelper(Context base){
         super(base);
         createChannels();
+        message = "";
     }
 
     public void createChannels(){
@@ -29,6 +38,9 @@ public class NotificationHelper extends ContextWrapper {
 
     }
 
+    public void setMessage(String message){
+        this.message = message;
+    }
     public NotificationManager getManager(){
         if(manager==null)
         {
@@ -37,9 +49,19 @@ public class NotificationHelper extends ContextWrapper {
         return manager;
     }
 
-    public Notification.Builder getChannelNotification(){
+        public Notification.Builder getChannelNotification(){
+
+
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.AM_PM, Calendar.AM);
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+
         return new Notification.Builder(getApplicationContext(),CHANNEL_ID )
-                .setContentText("This notification is to remind you that you have events scheduled")
+                .setContentText(message)
                 .setContentTitle("Reminder")
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setAutoCancel(true);
