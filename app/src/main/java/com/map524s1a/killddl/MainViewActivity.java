@@ -75,7 +75,7 @@ public class MainViewActivity extends AppCompatActivity {
 
     private User user;
 
-   private DailyFragment.EventListAdapter adapter;
+    private DailyFragment.EventListAdapter adapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
