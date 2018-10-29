@@ -165,28 +165,37 @@ public class espressoTests {
         onView(withId(R.id.card))
                 .check(doesNotExist());
     }
-    // test 9 todo fix me
+    // test 9
     @Test
-    public void add_multiple_events(){
-        espressoLogin();
-        // add first event
-        onView(withId(R.id.floatingActionButton)).perform(click());
-        espressoAddEvent();
-        // add second event
-        onView(withId(R.id.floatingActionButton)).perform(click());
-        espressoAddEvent();
-        // event exists
-        onView(withId(R.id.dailyTag)).perform(click());
-        onView(withId(R.id.card)).perform(click());
-        // click delete button
-        onView(withId(R.id.deleteBtn)).perform(click());
-        onView(withId(R.id.card))
+    public void good_register(){
+        String name = "testName";
+        String email = "test@usc.edu";
+        String pass = "testPass";
+        String image = "test.jpg";
+
+        onView(withId(R.id.register)).perform(click());
+        onView(withId(R.id.name))
+                .perform(typeText(name), closeSoftKeyboard());
+        onView(withId(R.id.emailAdd))
+                .perform(typeText(email), closeSoftKeyboard());
+        onView(withId(R.id.pswd))
+                .perform(typeText(pass), closeSoftKeyboard());
+//        onView(withId(R.id.img))
+//                .perform(typeText(image), closeSoftKeyboard());
+        onView(withId(R.id.saveBtn)).perform(click());
+        onView(withId(R.id.name))
                 .check(matches(isDisplayed()));
     }
-    // test 10 todo
+    // test 10
     @Test
-    public void todo(){
-
+    public void bad_register(){
+        onView(withId(R.id.register)).perform(click());
+        onView(withId(R.id.name))
+                .perform(typeText("test"), closeSoftKeyboard());
+        onView(withId(R.id.saveBtn)).perform(click());
+        // stay on same page = unregistered
+        onView(withId(R.id.name))
+                .check(matches(isDisplayed()));
     }
     // test 11
     @Test
@@ -255,6 +264,7 @@ public class espressoTests {
         onView(withId(R.id.button3)).perform(click());
 
     }
+    // test 15
     @Test
     public void send_email_test(){
         espressoLogin();
