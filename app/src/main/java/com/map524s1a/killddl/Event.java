@@ -56,6 +56,17 @@ public class Event implements Serializable {
         this._description = _description;
     }
 
+    public String getColor() { return color; }
+
+    public void setColor(String color) { this.color = color; }
+
+    public Date getTime() { return time; }
+
+    public void setTime(Date time) { this.time = time; }
+
+    public void setTimeStr(String timeStr) { this.timeStr = timeStr; }
+
+
     public Date get_dueDate() {
         return _dueDate;
     }
