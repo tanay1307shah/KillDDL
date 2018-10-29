@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.not;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class espressoTests {
+public class black_box_espresso_tests {
     // helper functions
     public void espressoLogin(){
         // Type text and then press the button.
