@@ -23,7 +23,7 @@ import android.widget.Toast;
  * Created by tanay on 10/14/2018.
  */
 
-public class RegisterActivity  extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity{
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
@@ -103,14 +103,6 @@ public class RegisterActivity  extends AppCompatActivity{
 
                     if(gender != null && fName != null && emailId != null && pwd != null){
 
-                        joinUserThread jt = new joinUserThread(emailId, pwd, fName, gender, imgUrl, new addUserResponse() {
-                            @Override
-                            public void addUserCallback(User u) {
-                                Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
-                                i.putExtra("user",u);
-                                startActivity(i);
-                            }
-                        });
 
 
 
