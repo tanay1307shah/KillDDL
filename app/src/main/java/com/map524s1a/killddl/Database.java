@@ -69,9 +69,9 @@ public class Database {
             }
         });
     }
-    public static void main(String[]args){
-        // for testing
-        Database db = new Database();
-        db.getMonthlyEvents("killddl.usc.edu");
-    }
+//    public static void main(String[]args){
+//        // for testing
+//        Database db = new Database();
+//        db.getMonthlyEvents("killddl.usc.edu");
+//    }
 }
