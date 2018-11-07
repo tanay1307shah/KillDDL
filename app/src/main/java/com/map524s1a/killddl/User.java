@@ -9,7 +9,6 @@ public class User  implements Serializable{
     private String _email;
     private String _password;
     private List<Event> _events;
-    //private Database _db;
     private int userId;
 
     public User(int id,String email, String password){
@@ -17,7 +16,6 @@ public class User  implements Serializable{
         _email = email;
         _password = password;
         _events = new ArrayList<Event>();
-        //_db = new Database();
     }
 
     //Get months com.map524s1a.killddl.Event, returns nothing but,

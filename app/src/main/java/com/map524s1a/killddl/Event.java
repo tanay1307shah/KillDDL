@@ -12,11 +12,11 @@ public class Event implements Serializable {
     private Date _dueDate;
     private int _frequency; // number represents frequency type
     private int _importance; // importance is from 1 to 3
-    private int _id;
+    private String _id;
     private Date time;
     private String timeStr;
 
-    public Event(String eventName, String description,String timeStr, Date dueDate, Date time, int frequency, int importance, int id,String color){
+    public Event(String eventName, String description,String timeStr, Date dueDate, Date time, int frequency, int importance, String id,String color){
         _eventName = eventName;
         this.time = time;
         this.timeStr = timeStr;
@@ -28,15 +28,17 @@ public class Event implements Serializable {
         this.color = color;
     }
 
+    public Event(){}
+
     public String getTimeStr(){
         return this.timeStr;
     }
 
-    public int get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(int id) {
+    public void set_id(String id) {
         this._id=id;
     }
 

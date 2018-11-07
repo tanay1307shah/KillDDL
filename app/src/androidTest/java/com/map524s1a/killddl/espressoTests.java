@@ -72,7 +72,6 @@ public class espressoTests {
         Intents.release();
     }
 
-    // test 1
     @Test
     public void valid_login() {
         espressoLogin();
@@ -80,7 +79,6 @@ public class espressoTests {
         intended(hasComponent(MainViewActivity.class.getName()));
     }
 
-    // test 2
     @Test
     public void invalid_login(){
         // Type text and then press the button.
@@ -99,7 +97,6 @@ public class espressoTests {
                 .check(doesNotExist());
     }
 
-    // test 3
     @Test
     public void register(){
         onView(withId(R.id.register)).perform(click());
@@ -107,7 +104,6 @@ public class espressoTests {
         intended(hasComponent(RegisterActivity.class.getName()));
     }
 
-    // test 4
     @Test
     public void add_event() {
         espressoLogin();
@@ -119,7 +115,6 @@ public class espressoTests {
         onView(withId(R.id.card)).check(matches(isDisplayed()));
     }
 
-    // test 5
     @Test
     public void click_profile_button(){
         espressoLogin();
@@ -129,7 +124,6 @@ public class espressoTests {
         onView(withId(R.id.button3)).check(matches(isDisplayed()));
     }
 
-    // test 6
     @Test
     public void click_list_view(){
         espressoLogin();
@@ -139,7 +133,6 @@ public class espressoTests {
         onView(withId(R.id.card)).check(matches(isDisplayed()));
     }
 
-    // test 7
     @Test
     public void correct_event_name(){
         espressoLogin();
@@ -150,7 +143,6 @@ public class espressoTests {
         onView(withId(R.id.evetitle)).check(matches(withText("testEvent")));
     }
 
-    // test 8
     @Test
     public void delete_event(){
         espressoLogin();
@@ -165,7 +157,7 @@ public class espressoTests {
         onView(withId(R.id.card))
                 .check(doesNotExist());
     }
-    // test 9
+
     @Test
     public void good_register(){
         String name = "testName";
@@ -186,7 +178,7 @@ public class espressoTests {
         onView(withId(R.id.name))
                 .check(matches(isDisplayed()));
     }
-    // test 10
+
     @Test
     public void bad_register(){
         onView(withId(R.id.register)).perform(click());
@@ -197,7 +189,6 @@ public class espressoTests {
         onView(withId(R.id.name))
                 .check(matches(isDisplayed()));
     }
-    // test 11
     @Test
     public void switchViews(){
         String email = "killddl@usc.edu";
@@ -215,7 +206,6 @@ public class espressoTests {
         intended(hasComponent(MainViewActivity.class.getName()));
     }
 
-    // test 12
     @Test
     public void switchViews2(){
         String email = "killddl@usc.edu";
@@ -233,7 +223,6 @@ public class espressoTests {
 
         intended(hasComponent(MainViewActivity.class.getName()));
     }
-    // test 13
     @Test
     public void check_events_test_no_events(){
         espressoLogin();
@@ -245,7 +234,6 @@ public class espressoTests {
         onView(withId(R.id.button3)).perform(click());
         //intended(hasComponent(ProfileFragment.class.getName()));
     }
-    // test 14
     @Test
     public void check_events_test_with_events(){
         espressoLogin();
@@ -264,7 +252,6 @@ public class espressoTests {
         onView(withId(R.id.button3)).perform(click());
 
     }
-    // test 15
     @Test
     public void send_email_test(){
         espressoLogin();

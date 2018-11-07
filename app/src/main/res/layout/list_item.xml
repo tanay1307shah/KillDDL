@@ -77,6 +77,13 @@
                 app:srcCompat="@drawable/ic_check_circle_black_24dp" />
 
             <TextView
+                android:id="@+id/uniqueID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:visibility="invisible" />
+
+            <TextView
                 android:id="@+id/evetitle"
                 android:layout_width="250dp"
                 android:layout_height="30dp"

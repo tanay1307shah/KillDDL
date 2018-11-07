@@ -14,10 +14,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
+import static com.map524s1a.killddl.MainViewActivity.EVENTS_CHILD;
 
 /**
  * Created by tanay on 10/15/2018.
@@ -28,6 +36,10 @@ public class ProfileFragment extends Fragment {
     NotificationHelper helper;
     Button btnSend;
     Button emailSend;
+    private DatabaseReference mFirebaseDatabaseReference;
+    private DatabaseReference eventsReference;
+    private static final String TAG = "ProfileFragment";
+    private List <Event> events;
 
     protected void sendEmail() {
         Log.i("Send email", "");
@@ -56,6 +68,27 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        eventsReference = mFirebaseDatabaseReference.child(EVENTS_CHILD);
+
+        eventsReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                List<Event> listEvents = new ArrayList<>();
+                Log.e(TAG ,"num events: "+snapshot.getChildrenCount());
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Event post = postSnapshot.getValue(Event.class);
+                    Log.e(TAG, " " + post.get_eventName());
+                    listEvents.add(post);
+                }
+                events = listEvents;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError de) {
+                Log.e("The read failed: " , de.getMessage());
+            }
+        });
     }
 
     @Nullable
@@ -77,8 +110,6 @@ public class ProfileFragment extends Fragment {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<Event> events = EventSingleton.get(getApplicationContext()).getEvents();
-
                 if(events.size()==0)
                 {
                     helper.setMessage("You have no events scheduled.");
@@ -89,21 +120,13 @@ public class ProfileFragment extends Fragment {
 
                 Notification.Builder builder = helper.getChannelNotification();
                 helper.getManager().notify(new Random().nextInt(),builder.build());
-
             }
         });
-
         emailSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendEmail();
             }
         });
-
-
-
-
-
-
     }
 }
