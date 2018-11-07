@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.map524s1a.killddl"
         minSdkVersion 26
@@ -38,7 +38,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.facebook.android:facebook-login:[4,5)'
-    implementation 'com.android.support:design:27.1.1'
+    compile group: 'com.android.support', name: 'design', version: '28.0.0-alpha3'
+
 
     //firebase
    // implementation "com.google.firebase:firebase-database:$playServices"

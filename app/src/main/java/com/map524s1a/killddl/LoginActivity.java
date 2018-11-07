@@ -2,9 +2,11 @@ package com.map524s1a.killddl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.login.Login;
@@ -26,6 +28,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
+    private TextInputEditText email;
+    private TextInputEditText paswd;
+    private Button btn;
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
 
@@ -41,6 +46,25 @@ public class LoginActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login); //instead of activity_sign_in
+
+
+        //temp login
+//        paswd = findViewById(R.id.password_text_input);
+//        email = findViewById(R.id.email);
+
+        btn = findViewById(R.id.register);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
+                           // i.putExtra("user",u);
+                    startActivity(i);
+
+            }
+        });
+
 
         // Assign fields
         mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);

@@ -66,8 +66,8 @@ public class MainViewActivity extends AppCompatActivity
 
         public MessageViewHolder(View v) {
             super(v);
-            messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
-            messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
+//            messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
+//            messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
         }
     }
     private FirebaseRecyclerAdapter<Event, MessageViewHolder> // todo note: instead of friendly message
@@ -192,7 +192,7 @@ public class MainViewActivity extends AppCompatActivity
 //        Intent I = getIntent();
 //        user = (User) I.getSerializableExtra("user");
 
-        mMessageRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
+       // mMessageRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(true);
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
