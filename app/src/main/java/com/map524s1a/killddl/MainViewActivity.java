@@ -192,7 +192,7 @@ public class MainViewActivity extends AppCompatActivity
 //        Intent I = getIntent();
 //        user = (User) I.getSerializableExtra("user");
 
-       // mMessageRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
+        mMessageRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(true);
         mMessageRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -450,7 +450,7 @@ public class MainViewActivity extends AppCompatActivity
                         mFirebaseDatabaseReference.child(EVENTS_CHILD)
                                 .push().setValue(newEvent, new DatabaseReference.CompletionListener() {
 
-                                    // updates entry with own unique key
+                            // updates entry with own unique key
                             @Override
                             public void onComplete(DatabaseError databaseError,
                                                    DatabaseReference databaseReference) {

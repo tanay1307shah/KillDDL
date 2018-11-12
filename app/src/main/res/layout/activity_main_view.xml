@@ -10,20 +10,26 @@
     tools:context="com.map524s1a.killddl.MainViewActivity">
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_above="@+id/navigation"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/switch1">
+        android:layout_below="@+id/switch1"
+        android:layout_marginTop="29dp">
 
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="@color/cardview_light_background"
@@ -45,8 +51,10 @@
         android:layout_marginBottom="30dp"
         android:clickable="true"
         app:elevation="24dp"
+        android:backgroundTint="@color/com_facebook_blue"
         android:background="#ffffff"
-        android:src="@drawable/ic_add_black_24dp" />
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        android:tint="@color/cardview_light_background"/>
 
     <Switch
         android:id="@+id/switch1"
@@ -70,7 +78,7 @@
         android:gravity="center_vertical"
         android:text="Monthly"
         android:id="@+id/monthlyTag"
-         />
+        />
 
     <TextView
         android:id="@+id/dailyTag"
@@ -82,33 +90,33 @@
         android:layout_toEndOf="@+id/floatingActionButton"
         android:gravity="center_vertical"
         android:text="Daily"
-         />
+        />
 
     <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_above="@+id/fragment_container"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="24dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:background="@drawable/button_design_plain">-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@+id/fragment_container"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginBottom="24dp"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:background="@drawable/button_design_plain">-->
 
-        <!--<Button-->
-            <!--android:id="@+id/button2"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="130dp"-->
-            <!--android:layout_marginTop="32dp"-->
-            <!--android:background="@drawable/button_design_fb"-->
-            <!--android:text="Button" />-->
+    <!--<Button-->
+    <!--android:id="@+id/button2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="130dp"-->
+    <!--android:layout_marginTop="32dp"-->
+    <!--android:background="@drawable/button_design_fb"-->
+    <!--android:text="Button" />-->
 
-        <!--<Button-->
-        <!--android:id="@+id/button3"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="62dp"-->
-        <!--android:text="Button"-->
-        <!--android:background="@drawable/button_design_plain"/>-->
+    <!--<Button-->
+    <!--android:id="@+id/button3"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="62dp"-->
+    <!--android:text="Button"-->
+    <!--android:background="@drawable/button_design_plain"/>-->
 
     <!--</LinearLayout>-->
 

@@ -54,16 +54,16 @@ public class LoginActivity extends AppCompatActivity implements
 
         btn = findViewById(R.id.register);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                    Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
-                           // i.putExtra("user",u);
-                    startActivity(i);
-
-            }
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                    Intent i = new Intent(getApplicationContext(),MainViewActivity.class);
+//                           // i.putExtra("user",u);
+//                    startActivity(i);
+//
+//            }
+//        });
 
 
         // Assign fields
