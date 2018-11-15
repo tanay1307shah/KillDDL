@@ -163,7 +163,7 @@ public class MainViewActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        startService(new Intent(this, NotificationService.class));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
