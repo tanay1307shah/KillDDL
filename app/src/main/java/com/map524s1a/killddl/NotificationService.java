@@ -6,17 +6,33 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.map524s1a.killddl.MainViewActivity.EVENTS_CHILD;
+
 public class NotificationService extends Service {
 
+    NotificationHelper helper;
     Timer timer;
     TimerTask timerTask;
     String TAG = "Timers";
     int Your_X_SECS = 5;
+    private DatabaseReference mFirebaseDatabaseReference;
+    private DatabaseReference eventsReference;
+    private List<Event> events;
 
 
     @Override
@@ -37,7 +53,28 @@ public class NotificationService extends Service {
 
     @Override
     public void onCreate() {
-        Log.e(TAG, "onCreate");
+
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        eventsReference = mFirebaseDatabaseReference.child(EVENTS_CHILD);
+
+        eventsReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                List<Event> listEvents = new ArrayList<>();
+                Log.e(TAG ,"num events: "+snapshot.getChildrenCount());
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    Event post = postSnapshot.getValue(Event.class);
+                    Log.e(TAG, " " + post.get_eventName());
+                    listEvents.add(post);
+                }
+                events = listEvents;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError de) {
+                Log.e("The read failed: " , de.getMessage());
+            }
+        });
 
 
     }
@@ -85,10 +122,19 @@ public class NotificationService extends Service {
                     public void run() {
 
                         //TODO CALL NOTIFICATION FUNC
-                        NotificationHelper helper;
-                        helper = new NotificationHelper(getApplication());
-                        Notification.Builder builder = helper.getChannelNotification();
-                        helper.getManager().notify(new Random().nextInt(),builder.build());
+                        helper = new NotificationHelper(getApplicationContext());
+
+                                if(events.size()==0)
+                                {
+                                    helper.setMessage("You have no events scheduled.");
+                                }
+                                else{
+                                    helper.setMessage(events.get(0).get_dueDate().toString());
+                                }
+
+                                Notification.Builder builder = helper.getChannelNotification();
+                                helper.getManager().notify(new Random().nextInt(),builder.build());
+
 
                     }
                 });
