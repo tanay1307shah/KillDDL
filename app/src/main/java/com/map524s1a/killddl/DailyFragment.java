@@ -47,6 +47,7 @@ public class DailyFragment extends Fragment {
 
     private Button delbtn;
     private Button detailsBtn;
+    private Button shareBtn;
     private EventListAdapter adapter;
     private DatabaseReference mFirebaseDatabaseReference;
     private DatabaseReference eventsReference;
@@ -115,6 +116,7 @@ public class DailyFragment extends Fragment {
             if(convertView == null){
                 convertView = getLayoutInflater().inflate(R.layout.list_item,null);
             }
+
             CardView cv = convertView.findViewById(R.id.card);
             TextView titleV = convertView.findViewById(R.id.evetitle);
             TextView timeV = convertView.findViewById(R.id.timeval);
@@ -122,9 +124,10 @@ public class DailyFragment extends Fragment {
             Button statusBtn = convertView.findViewById(R.id.statusBtn);
             detailsBtn = convertView.findViewById(R.id.detailsBtn);
             delbtn = convertView.findViewById(R.id.deleteBtn);
-
+            shareBtn = convertView.findViewById(R.id.sharebtn);
             detailsBtn.setVisibility(View.INVISIBLE);
             delbtn.setVisibility(View.INVISIBLE);
+
             final Event e = getItem(position);
 
             // set card text
