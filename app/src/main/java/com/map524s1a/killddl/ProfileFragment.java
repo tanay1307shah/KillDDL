@@ -110,6 +110,7 @@ public class ProfileFragment extends Fragment {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(events.size()==0)
                 {
                     helper.setMessage("You have no events scheduled.");

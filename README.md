@@ -2,6 +2,13 @@
 
 Name: Tanay Shah, Judy Zhang, Jin Ruan, Srishti Miglani, Kartik Mathur
 
+Sprint 1 Improvements
+
+Database
+Notifications - Real time
+Filling out user profile through facebook
+
+
 To run black box tests: 
 The black box tests are located in app/src/androidTest/java/com/map524s1a/killddl/espressoTests.java
 

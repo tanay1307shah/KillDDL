@@ -66,8 +66,8 @@ public class MainViewActivity extends AppCompatActivity
 
         public MessageViewHolder(View v) {
             super(v);
-            messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
-            messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
+//            messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
+//            messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
         }
     }
     private FirebaseRecyclerAdapter<Event, MessageViewHolder> // todo note: instead of friendly message
@@ -163,7 +163,7 @@ public class MainViewActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        startService(new Intent(this, NotificationService.class));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_view);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -450,7 +450,7 @@ public class MainViewActivity extends AppCompatActivity
                         mFirebaseDatabaseReference.child(EVENTS_CHILD)
                                 .push().setValue(newEvent, new DatabaseReference.CompletionListener() {
 
-                                    // updates entry with own unique key
+                            // updates entry with own unique key
                             @Override
                             public void onComplete(DatabaseError databaseError,
                                                    DatabaseReference databaseReference) {
