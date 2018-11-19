@@ -13,11 +13,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.HashMap;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 import static com.map524s1a.killddl.MainViewActivity.EVENTS_CHILD;
@@ -46,6 +53,10 @@ public class DailyFragment extends Fragment {
     private static final String TAG = "DailyFragment";
 
     private Button delbtn;
+    private String eventNameString;
+    private String descripString;
+    //private Button
+    private EditText timeVal;
     private Button detailsBtn;
     private EventListAdapter adapter;
     private DatabaseReference mFirebaseDatabaseReference;
@@ -161,11 +172,11 @@ public class DailyFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(DailyFragment.this.getContext());
-                    View mView = getLayoutInflater().inflate(R.layout.activity_event_view, null);
+                    final View mView = getLayoutInflater().inflate(R.layout.activity_event_view, null);
 
-                    TextView event = mView.findViewById(R.id.eventNameV);
-                    TextView dueDate = mView.findViewById(R.id.dueDate);
-                    TextView descrip = mView.findViewById(R.id.descriptionV);
+                    EditText event = mView.findViewById(R.id.eventNameV);
+                    EditText dueDate = mView.findViewById(R.id.dueDate);
+                    EditText descrip = mView.findViewById(R.id.descriptionV);
 
                     event.setText(e.get_eventName());
                     DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
@@ -181,6 +192,180 @@ public class DailyFragment extends Fragment {
                             //TODO close popup
                         }
                     });
+
+                    //add functionality for edit button
+                    final Button editBtn = mView.findViewById(R.id.editBtn);
+
+                    //fake remove button, not connected to database
+                    //use the.childmethod and then call the event getters to get values: String eventName, String description,String timeStr, Date dueDate, Date time, int frequency, int importance, String id,String color
+                    //use the mview.findbyid to get new values
+                    //use the firebase updateChildren() function, create map, to update values.
+                    editBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Event temp = e;
+                            //View mView = getLayoutInflater().inflate(R.layout.activity_event_view,null);
+                            timeVal = mView.findViewById(R.id.dueDate);
+
+                            EditText eventName = mView.findViewById(R.id.eventNameV);
+                            EditText description = mView.findViewById(R.id.descriptionV);
+
+                            //eventName.setText(e.get_eventName());
+                            //description.setText(e.get_description());
+
+                            String tempEventName = eventName.getText().toString();
+                            String tempDescription = description.getText().toString();
+
+                            Log.e(TAG, " eventname: " + eventName);
+
+                            HashMap<String, Object> updatedValues = new HashMap<String, Object>();
+                            updatedValues.put("_eventName", tempEventName);
+                            updatedValues.put("_description", tempDescription);
+
+                            eventsReference.child(e.get_id()).updateChildren(updatedValues);
+                            Log.e(TAG, " Edited " + e.get_eventName());
+                            //TODO close popup
+                        }
+                    });
+
+//                    editBtn.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(DailyFragment.this.getContext());
+//                            final AlertDialog alert = builder.create();
+//
+//                            View mView = getLayoutInflater().inflate(R.layout.activity_event_add,null);
+//                            //Button addB = mView.findViewById(R.id.add_event);
+//                            //Spinner dateSpin = mView.findViewById(R.id.spinner_date);
+//                            //Spinner monthSpin = mView.findViewById(R.id.spinner_month);
+//                            //Spinner yearSpin = mView.findViewById(R.id.spinner_year);
+//                            //Spinner notifySpin = mView.findViewById(R.id.spinner_notify);
+//                            //ImageButton colorPick = mView.findViewById(R.id.color_picker);
+//                            timeVal = mView.findViewById(R.id.dueDate);
+//                            final EditText eventName = mView.findViewById(R.id.eventNameV);
+//                            final EditText description = mView.findViewById(R.id.descriptionV);
+//
+//                            // set view to onclick view
+////                builder.setView(mView);
+////                alert.show();
+//
+////                            dateSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+////                                @Override
+////                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////                                    date = position;
+////                                }
+////
+////                                @Override
+////                                public void onNothingSelected(AdapterView<?> parent) {
+////
+////                                }
+////                            });
+//
+////                            monthSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+////                                @Override
+////                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////                                    month = position;
+////                                }
+////
+////                                @Override
+////                                public void onNothingSelected(AdapterView<?> parent) {
+////
+////                                }
+////                            });
+//
+////                            yearSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+////                                @Override
+////                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////                                    year = Integer.parseInt(yearArr[position]);
+////                                }
+////
+////                                @Override
+////                                public void onNothingSelected(AdapterView<?> parent) {
+////
+////                                }
+////                            });
+//
+////                            notifySpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+////                                @Override
+////                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+////                                    notify = notifyArr[position];
+////                                }
+////
+////                                @Override
+////                                public void onNothingSelected(AdapterView<?> parent) {
+////
+////                                }
+////                            });
+//
+////                            colorPick.setOnClickListener(new View.OnClickListener() {
+////                                @Override
+////                                public void onClick(View v) {
+////
+////                                }
+////                            });
+//
+//
+////                            timeVal.setOnClickListener(new View.OnClickListener() {
+////                                @Override
+////                                public void onClick(View v) {
+////                                    AlertDialog.Builder builder = new AlertDialog.Builder(MainViewActivity.this);
+////                                    View mView = getLayoutInflater().inflate(R.layout.dialog_time_picker,null);
+////                                    final TimePicker tp = mView.findViewById(R.id.timePicker);
+////                                    Button db = mView.findViewById(R.id.doneBtn);
+////
+////                                    db.setOnClickListener(new View.OnClickListener() {
+////                                        @Override
+////                                        public void onClick(View v) {
+////                                            hour = tp.getHour();
+////                                            min = tp.getMinute();
+////                                            if(hour < 12){
+////                                                time = hour + ":" + min + " AM";
+////                                            }else{
+////                                                time = hour +":" + min + " PM";
+////                                            }
+////                                            timeVal.setText(time);
+////                                        }
+////                                    });
+////                                }
+////                            });
+//
+//                            // ADDING EVENTS WORKS
+//                            editBtn.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    eventNameString = eventName.getText().toString();
+//                                    descripString = description.getText().toString();
+//                                    Date d = new Date(year,month,date);
+//                                    Event newEvent = new Event(eventNameString,descripString,time,d,new Date(),1,1, "id", "");
+//
+//                                    //get ID from firebase and update parameters
+//                                    mFirebaseDatabaseReference.child(EVENTS_CHILD)
+//                                            .push().setValue(newEvent, new DatabaseReference.CompletionListener() {
+//
+//                                        // updates entry with own unique key
+//                                        @Override
+//                                        public void onComplete(DatabaseError databaseError,
+//                                                               DatabaseReference databaseReference) {
+//                                            String uniqueID = databaseReference.getKey();
+//                                            mFirebaseDatabaseReference.child(EVENTS_CHILD).child(uniqueID).child("_id").setValue(uniqueID);
+//
+//                                        }
+//                                    });
+//
+//                                    Log.d(TAG, " added new event to database!...");
+//                                    Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
+//                                    alert.dismiss();
+//                                }
+//                            });
+//
+//                            builder.setView(mView);
+//                            AlertDialog dialog =  builder.create();
+//                            dialog.show();
+//                        }
+//
+//                    });
+
+                    //end functionality for edit button
                     builder.setView(mView);
                     AlertDialog dialog = builder.create();
                     dialog.show();}
