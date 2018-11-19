@@ -70,12 +70,12 @@
             android:textSize="22sp" />
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:elevation="5dp"
+        android:id="@+id/google_auth_bt"
         android:layout_width="285dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
+        android:elevation="5dp"
         android:visibility="visible" />
 
 
