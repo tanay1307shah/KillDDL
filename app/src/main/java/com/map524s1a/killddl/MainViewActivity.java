@@ -24,6 +24,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -42,6 +43,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
+import com.skydoves.colorpickerpreference.ColorEnvelope;
+import com.skydoves.colorpickerpreference.ColorListener;
 
 import java.util.Date;
 
@@ -348,7 +351,7 @@ public class MainViewActivity extends AppCompatActivity
                 Spinner monthSpin = mView.findViewById(R.id.spinner_month);
                 Spinner yearSpin = mView.findViewById(R.id.spinner_year);
                 Spinner notifySpin = mView.findViewById(R.id.spinner_notify);
-                ImageButton colorPick = mView.findViewById(R.id.color_picker);
+                final com.skydoves.colorpickerpreference.ColorPickerView colorPick = mView.findViewById(R.id.colorPickerView);
                 timeVal = mView.findViewById(R.id.t_val);
                 final TextView eventName = mView.findViewById(R.id.topic_val);
                 final TextView description = mView.findViewById(R.id.des_val);
@@ -405,9 +408,9 @@ public class MainViewActivity extends AppCompatActivity
                     }
                 });
 
-                colorPick.setOnClickListener(new View.OnClickListener() {
+                colorPick.setColorListener(new ColorListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onColorSelected(ColorEnvelope colorEnvelope) {
 
                     }
                 });
@@ -444,7 +447,7 @@ public class MainViewActivity extends AppCompatActivity
                         eventNameString = eventName.getText().toString();
                         descripString = description.getText().toString();
                         Date d = new Date(year,month,date);
-                        Event newEvent = new Event(eventNameString,descripString,time,d,new Date(),1,1, "id", "");
+                        Event newEvent = new Event(eventNameString,descripString,time,d,new Date(),1,1, "id", colorPick.getColorHtml());
 
 
                         mFirebaseDatabaseReference.child(EVENTS_CHILD)

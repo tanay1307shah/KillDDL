@@ -3,6 +3,7 @@ package com.map524s1a.killddl;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -162,6 +163,8 @@ public class DailyFragment extends Fragment {
 
             // set card text
             titleV.setText(e.get_eventName());
+            cv.setCardBackgroundColor(Color.parseColor("#AFEEEE"));
+            //cv.setBackgroundColor();
 
             timeV.setText(e.getTimeStr());
             uniqueID.setText(e.get_id());
