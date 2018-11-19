@@ -35,11 +35,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
-    private static final Class[] CLASSES = new Class[]{
-            GoogleLoginActivity.class,
-            FacebookLoginActivity.class,
-    };
-
     private TextInputEditText email;
     private TextInputEditText paswd;
     private Button btn;
