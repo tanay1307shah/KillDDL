@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,9 +36,10 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
-    private TextInputEditText email;
-    private TextInputEditText paswd;
-    private Button btn;
+    private TextInputEditText emailInput;
+    private TextInputEditText pswdInput;
+    private Button login;
+    private Button register;
     private LoginButton fbloginButton;
     private SignInButton googleSignInButton;
 
@@ -56,10 +58,31 @@ public class LoginActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login); //instead of activity_sign_in
+        emailInput = findViewById(R.id.email);
+        pswdInput = findViewById(R.id.password_edit_text);
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
         fbloginButton = findViewById(R.id.fb);
         googleSignInButton = findViewById(R.id.google_auth_bt);
+
+        /////////////////////////// Initialize Email Login/Register button ///////////////////////////
+
+        login = findViewById(R.id.login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emailSignIn(emailInput.getText().toString(), pswdInput.getText().toString());
+            }
+
+            });
+        register = findViewById(R.id.register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAccount(emailInput.getText().toString(), pswdInput.getText().toString());
+            }
+
+        });
 
         /////////////////////////// Initialize Google Login button ///////////////////////////
         googleSignInButton = findViewById(R.id.google_auth_bt);
@@ -92,15 +115,15 @@ public class LoginActivity extends AppCompatActivity implements
             @Override
             public void onCancel() {
                 Log.d(TAG, "facebook:onCancel");
-                // ...
             }
 
             @Override
             public void onError(FacebookException error) {
                 Log.d(TAG, "facebook:onError", error);
-                // ...
             }
         });
+
+
 
         // Initialize FirebaseAuth
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -111,6 +134,7 @@ public class LoginActivity extends AppCompatActivity implements
 
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
@@ -126,7 +150,7 @@ public class LoginActivity extends AppCompatActivity implements
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, "Facebook authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -146,7 +170,7 @@ public class LoginActivity extends AppCompatActivity implements
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithCredential", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, "Google authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Log.w(TAG, "signInWithCredential was successful. ***");
@@ -157,6 +181,89 @@ public class LoginActivity extends AppCompatActivity implements
                     }
                 });
     }
+    private boolean validateForm() {
+        boolean valid = true;
+
+        String email = emailInput.getText().toString();
+        if (TextUtils.isEmpty(email)) {
+            valid = false;
+
+        } else {
+            emailInput.setError(null);
+        }
+
+        String password = pswdInput.getText().toString();
+        if (TextUtils.isEmpty(password)) {
+            valid = false;
+        } else {
+            pswdInput.setError(null);
+        }
+        if(!valid){
+            Toast.makeText(LoginActivity.this, "Please input both email and password!",
+                    Toast.LENGTH_SHORT).show();
+        }
+        return valid;
+    }
+
+    private void emailSignIn(String email, String password) {
+        Log.d(TAG, "signIn:" + email);
+        if (!validateForm()) {
+            return;
+        }
+
+        mFirebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                            Intent i = new Intent(getApplicationContext(), MainViewActivity.class);
+                            startActivity(i); //instead of MainActivity.class
+                            finish();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Email authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+    private void createAccount(String email, String password) {
+        Log.d(TAG, "createAccount:" + email);
+        if (!validateForm()) {
+            return;
+        }
+
+//        showProgressDialog();
+
+        // [START create_user_with_email]
+        mFirebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                            Intent i = new Intent(getApplicationContext(), MainViewActivity.class);
+                            startActivity(i); //instead of MainActivity.class
+                            finish();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Email signup authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        // [END create_user_with_email]
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
