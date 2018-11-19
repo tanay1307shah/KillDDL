@@ -162,9 +162,16 @@ public class DailyFragment extends Fragment {
             final Event e = getItem(position);
 
             // set card text
+
             titleV.setText(e.get_eventName());
-            cv.setCardBackgroundColor(Color.parseColor("#AFEEEE"));
-            //cv.setBackgroundColor();
+            Log.d("myTag", e.getColor());
+            if(!e.getColor().isEmpty()){
+                cv.setCardBackgroundColor(Color.parseColor("#"+e.getColor()));
+
+            }
+            else{
+                cv.setCardBackgroundColor(Color.parseColor("#AFEEEE"));
+            }
 
             timeV.setText(e.getTimeStr());
             uniqueID.setText(e.get_id());

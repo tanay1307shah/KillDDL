@@ -58,7 +58,7 @@ public class Event implements Serializable {
         this._description = _description;
     }
 
-    public String getColor() { return color; }
+    public String getColor() { return this.color; }
 
     public void setColor(String color) { this.color = color; }
 
