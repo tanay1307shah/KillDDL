@@ -3,6 +3,8 @@ package com.map524s1a.killddl;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.TimePicker;
+
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -58,9 +61,37 @@ public class DailyFragment extends Fragment {
     //private Button
     private EditText timeVal;
     private Button detailsBtn;
+    private Button shareBtn;
     private EventListAdapter adapter;
     private DatabaseReference mFirebaseDatabaseReference;
     private DatabaseReference eventsReference;
+
+
+    protected void sendEmail(Event toShare) {
+        Log.i("Send email", "");
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        final Intent intent = emailIntent.setType("text/plain");
+
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "KILLDDL Reminder");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your friend is sharing this event with you.");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, toShare.get_eventName());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, toShare.get_dueDate());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, toShare.get_description());
+
+
+
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+            getActivity().finish();
+            Log.i("Finished sending email...", "");
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(getActivity(), "There is no email client installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +157,7 @@ public class DailyFragment extends Fragment {
             if(convertView == null){
                 convertView = getLayoutInflater().inflate(R.layout.list_item,null);
             }
+
             CardView cv = convertView.findViewById(R.id.card);
             TextView titleV = convertView.findViewById(R.id.evetitle);
             TextView timeV = convertView.findViewById(R.id.timeval);
@@ -134,12 +166,23 @@ public class DailyFragment extends Fragment {
             detailsBtn = convertView.findViewById(R.id.detailsBtn);
             delbtn = convertView.findViewById(R.id.deleteBtn);
 
+            shareBtn = convertView.findViewById(R.id.sharebtn);
             detailsBtn.setVisibility(View.INVISIBLE);
             delbtn.setVisibility(View.INVISIBLE);
+
             final Event e = getItem(position);
 
             // set card text
+
             titleV.setText(e.get_eventName());
+            Log.d("myTag", e.getColor());
+            if(!e.getColor().isEmpty()){
+                cv.setCardBackgroundColor(Color.parseColor("#"+e.getColor()));
+
+            }
+            else{
+                cv.setCardBackgroundColor(Color.parseColor("#AFEEEE"));
+            }
 
             timeV.setText(e.getTimeStr());
             uniqueID.setText(e.get_id());
@@ -165,6 +208,13 @@ public class DailyFragment extends Fragment {
                     eventsReference.child(e.get_id()).removeValue();
                     Log.e(TAG, " deleted " + e.get_eventName());
 
+                }
+            });
+
+            shareBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sendEmail(e);
                 }
             });
 

@@ -120,16 +120,26 @@ s
         android:text="Choose Color:"
         android:textSize="18sp"
         android:textStyle="bold" />
+<!---->
+<!--    <ImageButton-->
+<!--        android:id="@+id/color_picker"-->
+<!--        style="?android:attr/borderlessButtonStyle"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!---->
+<!--        android:layout_alignEnd="@+id/textView4"-->
+<!--        android:layout_below="@+id/textView9"-->
+<!--        android:background="@drawable/button_color_picker" />-->
 
-    <ImageButton
-        android:id="@+id/color_picker"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-
+    <com.skydoves.colorpickerpreference.ColorPickerView
+        android:id="@+id/colorPickerView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:palette="@drawable/palette"
+        app:selector="@drawable/wheel"
         android:layout_alignEnd="@+id/textView4"
-        android:layout_below="@+id/textView9"
-        android:background="@drawable/button_color_picker" />
+        android:layout_below="@+id/textView9"/>
+
 
 
 
@@ -153,6 +163,6 @@ s
         android:layout_alignTop="@+id/textView19"
         android:gravity="center_vertical"
         android:text="0:00 AM" />
-
+        
 
 </RelativeLayout>

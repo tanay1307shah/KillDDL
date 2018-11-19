@@ -29,7 +29,7 @@ public class NotificationService extends Service {
     Timer timer;
     TimerTask timerTask;
     String TAG = "Timers";
-    int Your_X_SECS = 5;
+    int Your_X_SECS = 100;
     private DatabaseReference mFirebaseDatabaseReference;
     private DatabaseReference eventsReference;
     private List<Event> events;
