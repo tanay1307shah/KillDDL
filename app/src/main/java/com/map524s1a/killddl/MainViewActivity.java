@@ -363,8 +363,8 @@ public class MainViewActivity extends AppCompatActivity
                 dateSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        date = position+1;
-                        Log.e(TAG, " date: " + position);
+                        date = position;
+                        Log.e(TAG, " date: " + (position + 1));
 
                     }
 
@@ -377,8 +377,8 @@ public class MainViewActivity extends AppCompatActivity
                 monthSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        month = position+1;
-                        Log.e(TAG, " month: " + month);
+                        month = position;
+                        Log.e(TAG, " month: " + (month+1));
 
                     }
 
