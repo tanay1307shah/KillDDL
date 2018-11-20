@@ -46,9 +46,13 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
       eventViewHolder.uniqueID.setText(e.get_id());
 
 
+        if(!e.getColor().isEmpty()){
+            eventViewHolder.cv.setCardBackgroundColor(Color.parseColor("#"+e.getColor()));
 
-
-
+        }
+        else{
+            eventViewHolder.cv.setCardBackgroundColor(Color.parseColor("#AFEEEE"));
+        }
 
 
 
@@ -104,7 +108,6 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             uniqueID = itemView.findViewById(R.id.uniqueID);
             statusBtn = itemView.findViewById(R.id.statusBtn);
             //shareBtn = itemView.findViewById(R.id.sharebtn);
-
         }
 
     }
