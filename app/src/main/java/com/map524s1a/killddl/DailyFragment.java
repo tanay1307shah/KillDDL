@@ -40,8 +40,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
@@ -127,17 +129,33 @@ public class DailyFragment extends Fragment {
                     Log.e(TAG, " " + post.get_eventName());
                     Date today = Calendar.getInstance().getTime();
                     Date deadline = post.get_dueDate();
-                    Log.e(TAG ,"TODAY: "+today + " POST: " + post.get_dueDate());
+                    Log.e(TAG ,"TODAY: " + today + " POST: " + post.get_dueDate());
 
                     if(deadline.getDay()==today.getDay()){
                         if(deadline.getMonth() == today.getMonth()){
                             if(deadline.getYear()-1900 == today.getYear()){
                                 listEvents.add(post);
-
                             }
                         }
                     }
                 }
+                //sorting
+                Collections.sort(listEvents, new Comparator<Event>() {
+                    @Override
+                    public int compare(Event a, Event b) {
+                        // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                        // a is after b
+                        if (a.get_dueDate().after(b.get_dueDate())) {
+                            Log.e(TAG ,"Event: " + a.get_eventName() + " is after: " + b.get_eventName());
+
+                            return 1;
+                        } else{
+                            Log.e(TAG ,"Event: " + a.get_eventName() + " is before: " + b.get_eventName());
+
+                            return -1;
+                        }
+                    }
+                });
 
                 LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
                 llm.setOrientation(LinearLayoutManager.VERTICAL);

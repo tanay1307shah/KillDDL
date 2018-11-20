@@ -364,7 +364,7 @@ public class MainViewActivity extends AppCompatActivity
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         date = position;
-                        Log.e(TAG, " date: " + (position + 1));
+                        Log.e(TAG, " date: " + (position+1));
 
                     }
 
@@ -379,7 +379,6 @@ public class MainViewActivity extends AppCompatActivity
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         month = position;
                         Log.e(TAG, " month: " + (month+1));
-
                     }
 
                     @Override

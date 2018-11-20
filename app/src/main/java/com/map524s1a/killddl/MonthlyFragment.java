@@ -29,6 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -90,6 +92,24 @@ public class MonthlyFragment extends Fragment {
                         }
                     }
                 }
+                //sorting
+                Collections.sort(listEvents, new Comparator<Event>() {
+                    @Override
+                    public int compare(Event a, Event b) {
+                        // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                        // a is after b
+                        if (a.get_dueDate().after(b.get_dueDate())) {
+                            Log.e(TAG ,"Event: " + a.get_eventName() + " is after: " + b.get_eventName());
+
+                            return 1;
+                        } else{
+                            Log.e(TAG ,"Event: " + a.get_eventName() + " is before: " + b.get_eventName());
+
+                            return -1;
+                        }
+                    }
+                });
+
 
                 LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
                 llm.setOrientation(LinearLayoutManager.VERTICAL);

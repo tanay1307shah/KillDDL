@@ -1,6 +1,7 @@
 package com.map524s1a.killddl;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class Event implements Serializable {
     private Date time;
     private String timeStr;
 
-    public Event(String eventName, String description,String timeStr, Date dueDate, Date time, int frequency, int importance, String id,String color){
+    public Event(String eventName, String description, String timeStr, Date dueDate, Date time, int frequency, int importance, String id, String color) {
         _eventName = eventName;
         this.time = time;
         this.timeStr = timeStr;
@@ -28,9 +29,10 @@ public class Event implements Serializable {
         this.color = color;
     }
 
-    public Event(){}
+    public Event() {
+    }
 
-    public String getTimeStr(){
+    public String getTimeStr() {
         return this.timeStr;
     }
 
@@ -39,7 +41,7 @@ public class Event implements Serializable {
     }
 
     public void set_id(String id) {
-        this._id=id;
+        this._id = id;
     }
 
     public String get_eventName() {
@@ -58,15 +60,25 @@ public class Event implements Serializable {
         this._description = _description;
     }
 
-    public String getColor() { return this.color; }
+    public String getColor() {
+        return this.color;
+    }
 
-    public void setColor(String color) { this.color = color; }
+    public void setColor(String color) {
+        this.color = color;
+    }
 
-    public Date getTime() { return time; }
+    public Date getTime() {
+        return time;
+    }
 
-    public void setTime(Date time) { this.time = time; }
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
-    public void setTimeStr(String timeStr) { this.timeStr = timeStr; }
+    public void setTimeStr(String timeStr) {
+        this.timeStr = timeStr;
+    }
 
 
     public Date get_dueDate() {
@@ -91,15 +103,5 @@ public class Event implements Serializable {
 
     public void set_importance(int _importance) {
         this._importance = _importance;
-    }
-
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("event_name", _eventName);
-        result.put("decription", _description);
-        result.put("due_date", _dueDate);
-        result.put("frequency", _frequency);
-        result.put("importance", _importance);
-        return result;
     }
 }

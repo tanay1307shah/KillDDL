@@ -94,8 +94,8 @@ s
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/color_picker"
         android:layout_below="@+id/textView19"
+        android:layout_alignStart="@+id/color_picker"
         android:layout_marginTop="18dp"
         android:text="Notification:"
         android:textSize="18sp"
@@ -105,9 +105,10 @@ s
         android:id="@+id/spinner_notify"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView8"
         android:layout_below="@+id/textView8"
-        android:layout_marginTop="15dp"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="14dp"
         android:entries="@array/notArrify" />
 
     <TextView
@@ -158,9 +159,12 @@ s
         android:id="@+id/t_val"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView19"
-        android:layout_alignEnd="@+id/textView9"
         android:layout_alignTop="@+id/textView19"
+        android:layout_alignEnd="@+id/textView9"
+        android:layout_alignBottom="@+id/textView19"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="-48dp"
+        android:layout_marginBottom="0dp"
         android:gravity="center_vertical"
         android:text="0:00 AM" />
         
