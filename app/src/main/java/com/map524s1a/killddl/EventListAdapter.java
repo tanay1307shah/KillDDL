@@ -49,68 +49,11 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 
 
 
-      final int visDet = eventViewHolder.detailsBtn.getVisibility();
-      final int visDel = eventViewHolder.delbtn.getVisibility();
-
-        final boolean[] isVisible = {false};
-
-        if(!e.getColor().isEmpty()){
-            eventViewHolder.cv.setCardBackgroundColor(Color.parseColor("#"+e.getColor()));
-
-        }
-        else{
-            eventViewHolder.cv.setCardBackgroundColor(Color.parseColor("#AFEEEE"));
-        }
 
 
 
         eventViewHolder.cv.setOnClickListener(new View.OnClickListener() {
             // show details
-            @Override
-            public void onClick(View v) {
-                if(eventViewHolder.detailsBtn.getVisibility() == View.INVISIBLE && eventViewHolder.delbtn.getVisibility() == View.INVISIBLE) {
-                    eventViewHolder.detailsBtn.setVisibility(View.VISIBLE);
-                    eventViewHolder.delbtn.setVisibility(View.VISIBLE);
-                }
-                else{
-                    eventViewHolder.detailsBtn.setVisibility(View.INVISIBLE);
-                    eventViewHolder.delbtn.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-
-
-//      eventViewHolder.cv.setOnClickListener(new View.OnClickListener() {
-//          @Override
-//            public void onClick(View v) {
-//
-//              if(visDet == View.INVISIBLE && visDel == View.INVISIBLE){
-//                  isVisible[0] = true;
-//              }else {
-//                  isVisible[0] = false;
-//              }
-//            }
-//
-//      });
-//
-//      if(isVisible[0]){
-//          eventViewHolder.detailsBtn.setVisibility(View.VISIBLE);
-//          eventViewHolder.delbtn.setVisibility(View.VISIBLE);
-//      }else{
-//          eventViewHolder.detailsBtn.setVisibility(View.INVISIBLE);
-//          eventViewHolder.delbtn.setVisibility(View.INVISIBLE);
-//      }
-
-      eventViewHolder.delbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // eventsReference.child(e.get_id()).removeValue();
-
-
-            }
-        });
-
-      eventViewHolder.detailsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -129,14 +72,15 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
                 removeBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                      //  eventsReference.child(e.get_id()).removeValue();
-                       // Log.e(TAG, " deleted " + e.get_eventName());
+                        //  eventsReference.child(e.get_id()).removeValue();
+                        // Log.e(TAG, " deleted " + e.get_eventName());
                         //TODO close popup
                     }
                 });
                 builder.setView(mView);
                 AlertDialog dialog = builder.create();
-                dialog.show();}
+                dialog.show();
+            }
         });
     }
 
@@ -158,12 +102,9 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             titleV = itemView.findViewById(R.id.evetitle);
             timeV = itemView.findViewById(R.id.timeval);
             uniqueID = itemView.findViewById(R.id.uniqueID);
-            detailsBtn = itemView.findViewById(R.id.detailsBtn);
-            delbtn = itemView.findViewById(R.id.deleteBtn);
             statusBtn = itemView.findViewById(R.id.statusBtn);
             //shareBtn = itemView.findViewById(R.id.sharebtn);
-            detailsBtn.setVisibility(View.INVISIBLE);
-            delbtn.setVisibility(View.INVISIBLE);
+
         }
 
     }
