@@ -114,7 +114,7 @@ public class MainViewActivity extends AppCompatActivity
     private int min;
     private String time;
     private User user;
-    private DailyFragment.EventListAdapter adapter;
+    private EventListAdapter adapter;
 
     // toggling month and day
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -462,6 +462,8 @@ public class MainViewActivity extends AppCompatActivity
 
                             }
                         });
+
+                        //adapter.notifyDataSetChanged();
 
                         Log.d(TAG, " added new event to database!...");
                         Toast.makeText(getApplicationContext(),"Event Added!", Toast.LENGTH_SHORT).show();
