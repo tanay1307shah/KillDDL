@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,7 +77,7 @@ public class MonthlyFragment extends Fragment {
         eventsReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) { //TODO: should only retrieve today's events
-                List<Event> listEvents = new ArrayList<>();
+                final List<Event> listEvents = new ArrayList<>();
 
                 Log.e(TAG ,"num events: " + snapshot.getChildrenCount());
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
@@ -118,6 +119,28 @@ public class MonthlyFragment extends Fragment {
                 lv.setAdapter(adapter);
                 lv.setHasFixedSize(true);
                 adapter.notifyDataSetChanged();
+
+                ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder dragged, @NonNull RecyclerView.ViewHolder dropped) {
+                        int startPos = dragged.getAdapterPosition();
+                        int endPos = dropped.getAdapterPosition();
+
+                        Collections.swap(listEvents,startPos,endPos);
+                        adapter.notifyItemMoved(startPos,endPos);
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                        int pos = viewHolder.getAdapterPosition();
+                        eventsReference.child(listEvents.get(pos).get_id()).removeValue();
+                        listEvents.remove(pos);
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                helper.attachToRecyclerView(lv);
+
             }
 
             @Override

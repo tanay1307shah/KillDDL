@@ -54,14 +54,16 @@
                 android:textAlignment="viewStart" />
 
             <Button
-                android:id="@+id/deleteBtn"
+                android:id="@+id/shareBttn"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="35dp"
                 android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/detailsBtn"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="23dp"
                 android:background="@drawable/ic_share_black_24dp"
-                android:backgroundTint="#777777" />
+                android:backgroundTint="#dcddd9" />
 
             <Button
                 android:id="@+id/statusBtn"

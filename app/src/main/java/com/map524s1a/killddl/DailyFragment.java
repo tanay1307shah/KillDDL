@@ -74,30 +74,6 @@ public class DailyFragment extends Fragment {
     private DatabaseReference eventsReference;
 
 
-    protected void sendEmail(Event toShare) {
-        Log.i("Send email", "");
-
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
-        final Intent intent = emailIntent.setType("text/plain");
-
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "KILLDDL Reminder");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "Your friend is sharing this event with you.");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, toShare.get_eventName());
-        emailIntent.putExtra(Intent.EXTRA_TEXT, toShare.get_dueDate());
-        emailIntent.putExtra(Intent.EXTRA_TEXT, toShare.get_description());
-
-
-
-
-        try {
-            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-            getActivity().finish();
-            Log.i("Finished sending email...", "");
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(getActivity(), "There is no email client installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -180,6 +156,7 @@ public class DailyFragment extends Fragment {
                     @Override
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
                         int pos = viewHolder.getAdapterPosition();
+                        eventsReference.child(listEvents.get(pos).get_id()).removeValue();
                         listEvents.remove(pos);
                         adapter.notifyDataSetChanged();
                     }

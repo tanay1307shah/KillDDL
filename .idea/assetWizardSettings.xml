@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="color" value="c3c3c3" />
                             <entry key="outputName" value="ic_share_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\tanay" />
+                            <entry key="sourceFile" value="C:\Users\tanay\Downloads\round-share-24px.svg" />
                           </map>
                         </option>
                       </PersistentState>
