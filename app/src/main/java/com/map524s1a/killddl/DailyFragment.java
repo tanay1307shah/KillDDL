@@ -39,6 +39,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
@@ -115,15 +116,26 @@ public class DailyFragment extends Fragment {
 
         eventsReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot snapshot) {
+            public void onDataChange(DataSnapshot snapshot) { //TODO: should only retrieve today's events
                 List<Event> listEvents = new ArrayList<>();
+
                 Log.e(TAG ,"num events: "+snapshot.getChildrenCount());
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     Event post = postSnapshot.getValue(Event.class);
                     Log.e(TAG, " " + post.get_eventName());
-                    listEvents.add(post);
-                }
+                    Date today = Calendar.getInstance().getTime();
+                    Date deadline = post.get_dueDate();
+                    Log.e(TAG ,"TODAY: "+today + " POST: " + post.get_dueDate());
 
+                    if(deadline.getDay()==today.getDay()){
+                        if(deadline.getMonth() == today.getMonth()){
+                            if(deadline.getYear()-1900 == today.getYear()){
+                                listEvents.add(post);
+
+                            }
+                        }
+                    }
+                }
 
                 LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
                 llm.setOrientation(LinearLayoutManager.VERTICAL);
