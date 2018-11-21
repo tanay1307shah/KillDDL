@@ -157,8 +157,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
                     }
                 });
                 builder.setView(mView);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                //AlertDialog dialog = builder.create();
+                //dialog.show();
             }
         });
     }
