@@ -78,7 +78,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 
 
         if(!e.getColor().isEmpty()){
-            eventViewHolder.cv.setCardBackgroundColor(Color.parseColor("#"+e.getColor()));
+
+            eventViewHolder.cv.setCardBackgroundColor(Color.parseColor(e.getColor()));
 
         }
         else{
@@ -92,12 +93,18 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             }
         });
 
+        eventViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext.getApplicationContext());
+            }
+        });
         eventViewHolder.cv.setOnClickListener(new View.OnClickListener() {
             // show details
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-                final View mView = LayoutInflater.from(mContext).inflate(R.layout.activity_event_view, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext.getApplicationContext());
+                final View mView = LayoutInflater.from(mContext.getApplicationContext()).inflate(R.layout.activity_event_view, null);
 
 
                 String eventNameString;
@@ -157,8 +164,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
                     }
                 });
                 builder.setView(mView);
-                //AlertDialog dialog = builder.create();
-                //dialog.show();
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }

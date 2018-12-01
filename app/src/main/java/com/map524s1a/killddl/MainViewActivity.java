@@ -351,6 +351,7 @@ public class MainViewActivity extends AppCompatActivity
                 Spinner monthSpin = mView.findViewById(R.id.spinner_month);
                 Spinner yearSpin = mView.findViewById(R.id.spinner_year);
                 Spinner notifySpin = mView.findViewById(R.id.spinner_notify);
+                Spinner colorSpin = mView.findViewById(R.id.ColorSpinner);
                 final com.skydoves.colorpickerpreference.ColorPickerView colorPick = mView.findViewById(R.id.colorPickerView);
                 timeVal = mView.findViewById(R.id.t_val);
                 final TextView eventName = mView.findViewById(R.id.topic_val);
@@ -359,6 +360,35 @@ public class MainViewActivity extends AppCompatActivity
                 // set view to onclick view
 //                builder.setView(mView);
 //                alert.show();
+
+
+                final String[] colorStr = {""};
+
+                colorSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        switch (position){
+                            case 0:
+                                colorStr[0] = "#AFEEEE";
+                                break;
+                            case 1:
+                                colorStr[0] = "#ff9393";
+                                break;
+                            case 2:
+                                colorStr[0] = "#bfd0ff";
+                                break;
+                            case 3:
+                                colorStr[0] = "#bfffc5";
+                                break;
+                        }
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
 
                 dateSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -441,8 +471,12 @@ public class MainViewActivity extends AppCompatActivity
                                 timeVal.setText(time);
                             }
                         });
+                        builder.setView(mView);
+                        AlertDialog dialog =  builder.create();
+                        dialog.show();
                     }
                 });
+
 
                 // ADDING EVENTS WORKS
                 addB.setOnClickListener(new View.OnClickListener() {
@@ -451,7 +485,7 @@ public class MainViewActivity extends AppCompatActivity
                         eventNameString = eventName.getText().toString();
                         descripString = description.getText().toString();
                         Date d = new Date(year,month,date);
-                        Event newEvent = new Event(eventNameString,descripString,time,d,new Date(),1,1, "id", colorPick.getColorHtml());
+                        Event newEvent = new Event(eventNameString,descripString,time,d,new Date(),1,1, "id", colorStr[0]);
 
 
                         mFirebaseDatabaseReference.child(EVENTS_CHILD)

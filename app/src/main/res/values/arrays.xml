@@ -70,4 +70,11 @@
         <item>1 month before</item>
     </string-array>
 
+    <string-array name="colorArr">
+        <item>No Color</item>
+        <item>Red</item>
+        <item>Blue</item>
+        <item>Green</item>
+    </string-array>
+
 </resources>
