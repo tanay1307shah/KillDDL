@@ -18,9 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,9 +63,60 @@ public class MonthlyFragment extends Fragment {
     private EventListAdapter adapter;
     private DatabaseReference mFirebaseDatabaseReference;
     private DatabaseReference eventsReference;
+
+    private List<Event> listEvents;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public void updateEvents( final List<Event> listE){
+        //sorting
+        Collections.sort(listE, new Comparator<Event>() {
+            @Override
+            public int compare(Event a, Event b) {
+                // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                // a is after b
+                if (a.get_dueDate().after(b.get_dueDate())) {
+                    Log.e(TAG ,"Event: " + a.get_eventName() + " is after: " + b.get_eventName());
+
+                    return 1;
+                } else{
+                    Log.e(TAG ,"Event: " + a.get_eventName() + " is before: " + b.get_eventName());
+
+                    return -1;
+                }
+            }
+        });
+
+        LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        lv.setLayoutManager(llm);
+        adapter = new EventListAdapter(getApplicationContext(),listE);
+        lv.setAdapter(adapter);
+        lv.setHasFixedSize(true);
+        adapter.notifyDataSetChanged();
+
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder dragged, @NonNull RecyclerView.ViewHolder dropped) {
+                int startPos = dragged.getAdapterPosition();
+                int endPos = dropped.getAdapterPosition();
+
+                Collections.swap(listE,startPos,endPos);
+                adapter.notifyItemMoved(startPos,endPos);
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                int pos = viewHolder.getAdapterPosition();
+                eventsReference.child(listE.get(pos).get_id()).removeValue();
+                listE.remove(pos);
+                adapter.notifyDataSetChanged();
+            }
+        });
+        helper.attachToRecyclerView(lv);
     }
 
     @Nullable
@@ -71,21 +124,55 @@ public class MonthlyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View fm_layout = inflater.inflate(R.layout.activity_monthly,container,false);
         lv = fm_layout.findViewById(R.id.listView);
+        listEvents = new ArrayList<>();
+
+        // select the calendar
+        CalendarView calendarV = (CalendarView) fm_layout.findViewById(R.id.calendarView2); // get the reference of CalendarView
+        long selectedDate = calendarV.getDate(); // get selected date in milliseconds
+
+
+        calendarV.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
+                // get events of this day
+                // dateDisplay.setText("Date: " + i2 + " / " + i1 + " / " + i);
+                // UPDATE EVENTS
+                Log.e(TAG ,"THE DAY CHANGED" );
+
+                List<Event> dailyEvents = new ArrayList<>();
+                Log.e(TAG ,"today is: " + i2 + "/" + i1 + "/" + (i));
+
+                for(int j = 0; j < listEvents.size(); j++) {
+                    Event e = listEvents.get(j);
+                    Date deadline = e.get_dueDate();
+                    int month = deadline.getMonth();
+                    int year = deadline.getYear();
+                    int day = deadline.getDate();
+                    Log.e(TAG ,"event looking at: " + e.get_eventName() + " on: " + (day) + "/" + (month) + "/" + (year));
+
+                    if ((month == i1) && (year == i) && (day+1 == i2)) {
+                        dailyEvents.add(e);
+                    }
+                }
+                updateEvents(dailyEvents);
+                // Toast.makeText(getApplicationContext(), "Selected Date:\n" + "Day = " + i2 + "\n" + "Month = " + i1 + "\n" + "Year = " + i, Toast.LENGTH_LONG).show();
+            }
+        });
+
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         eventsReference = mFirebaseDatabaseReference.child(EVENTS_CHILD);
 
         eventsReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) { //TODO: should only retrieve today's events
-                final List<Event> listEvents = new ArrayList<>();
-
+                listEvents.clear();
                 Log.e(TAG ,"num events: " + snapshot.getChildrenCount());
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     Event post = postSnapshot.getValue(Event.class);
                     Log.e(TAG, " " + post.get_eventName());
                     Date today = Calendar.getInstance().getTime();
                     Date deadline = post.get_dueDate();
-                    Log.e(TAG ,"TODAY: "+today + " POST: " + post.get_dueDate());
+                    Log.e(TAG ,"TODAY: "+ today + " POST: " + post.get_dueDate());
 
                     if(deadline.getMonth() == today.getMonth()) {
                         if (deadline.getYear() - 1900 == today.getYear()) {
@@ -93,54 +180,7 @@ public class MonthlyFragment extends Fragment {
                         }
                     }
                 }
-                //sorting
-                Collections.sort(listEvents, new Comparator<Event>() {
-                    @Override
-                    public int compare(Event a, Event b) {
-                        // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
-                        // a is after b
-                        if (a.get_dueDate().after(b.get_dueDate())) {
-                            Log.e(TAG ,"Event: " + a.get_eventName() + " is after: " + b.get_eventName());
-
-                            return 1;
-                        } else{
-                            Log.e(TAG ,"Event: " + a.get_eventName() + " is before: " + b.get_eventName());
-
-                            return -1;
-                        }
-                    }
-                });
-
-
-                LinearLayoutManager llm = new LinearLayoutManager(getApplicationContext());
-                llm.setOrientation(LinearLayoutManager.VERTICAL);
-                lv.setLayoutManager(llm);
-                adapter = new EventListAdapter(getApplicationContext(),listEvents);
-                lv.setAdapter(adapter);
-                lv.setHasFixedSize(true);
-                adapter.notifyDataSetChanged();
-
-                ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-                    @Override
-                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder dragged, @NonNull RecyclerView.ViewHolder dropped) {
-                        int startPos = dragged.getAdapterPosition();
-                        int endPos = dropped.getAdapterPosition();
-
-                        Collections.swap(listEvents,startPos,endPos);
-                        adapter.notifyItemMoved(startPos,endPos);
-                        return false;
-                    }
-
-                    @Override
-                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                        int pos = viewHolder.getAdapterPosition();
-                        eventsReference.child(listEvents.get(pos).get_id()).removeValue();
-                        listEvents.remove(pos);
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-                helper.attachToRecyclerView(lv);
-
+                updateEvents(listEvents);
             }
 
             @Override

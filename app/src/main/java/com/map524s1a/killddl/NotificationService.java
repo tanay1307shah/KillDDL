@@ -123,17 +123,17 @@ public class NotificationService extends Service {
 
                         //TODO CALL NOTIFICATION FUNC
                         helper = new NotificationHelper(getApplicationContext());
+                        if(events==null) {
 
-                                if(events.size()==0)
-                                {
-                                    helper.setMessage("You have no events scheduled.");
-                                }
-                                else{
-                                    helper.setMessage(events.get(0).get_dueDate().toString());
-                                }
-
-                                Notification.Builder builder = helper.getChannelNotification();
-                                helper.getManager().notify(new Random().nextInt(),builder.build());
+                        }
+                        else if(events.size()==0) {
+                            helper.setMessage("You have no events scheduled.");
+                        }
+                        else{
+                            helper.setMessage(events.get(0).get_dueDate().toString());
+                            }
+                            Notification.Builder builder = helper.getChannelNotification();
+                        helper.getManager().notify(new Random().nextInt(),builder.build());
 
 
                     }

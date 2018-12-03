@@ -64,6 +64,17 @@ public class LoginActivity extends AppCompatActivity implements
         mFirebaseAuth = FirebaseAuth.getInstance();
         fbloginButton = findViewById(R.id.fb);
         googleSignInButton = findViewById(R.id.google_auth_bt);
+        FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+        // user already signed in
+        if(user!=null){
+            Log.d(TAG, "Already logged in, signing you in!...:");
+            Intent i = new Intent(getApplicationContext(), MainViewActivity.class);
+            startActivity(i); //instead of MainActivity.class
+            finish();
+        } else{
+            Log.d(TAG, "User, please log in!...:");
+        }
 
         /////////////////////////// Initialize Email Login/Register button ///////////////////////////
 
