@@ -1,58 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:theme="@style/AlertDialog.AppCompat.Light">
+    android:id="@+id/rv"
+    style="@style/Theme.AppCompat.Dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/delBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
-        android:background="#e5402d"
+        android:layout_marginStart="252dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_design_fb"
+        android:backgroundTint="#e5402d"
         android:elevation="@dimen/cardview_default_elevation"
         android:text="Delete"
         android:textColor="#ffffff" />
 
     <Button
-        android:id="@+id/editBtn"
-        android:layout_width="wrap_content"
+        android:id="@+id/savBtn"
+        android:layout_width="123dp"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/delBtn"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="46dp"
-        android:background="#95a5a6"
-        android:elevation="@dimen/cardview_default_elevation"
-        android:text="Edit"
-        android:textColor="#ffffff" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="13dp"
-        app:srcCompat="@drawable/button_color_picker" />
+        android:layout_marginStart="86dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_design_fb"
+        android:backgroundTint="@color/com_facebook_blue"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:text="Save"
+        android:textColor="#ffffff" />
 
     <EditText
         android:id="@+id/eventNameV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_marginStart="19dp"
-        android:layout_marginBottom="-12dp"
-        android:layout_toEndOf="@+id/imageView"
+
+        android:layout_marginStart="22dp"
+        android:layout_marginBottom="0dp"
+
+        android:background="@android:color/transparent"
         android:text="TextView"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -62,10 +58,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/eventNameV"
-        android:layout_marginTop="12dp"
-        android:layout_toEndOf="@+id/imageView"
-        app:srcCompat="@android:drawable/ic_menu_my_calendar"
-        android:elevation="@dimen/cardview_default_elevation" />
+        android:layout_alignStart="@+id/eventNameV"
+        android:layout_marginTop="14dp"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
     <EditText
         android:id="@+id/dueDate"
@@ -77,6 +73,7 @@
         android:layout_marginTop="-4dp"
         android:layout_marginBottom="-10dp"
         android:layout_toEndOf="@+id/imageView3"
+        android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:text="TextView" />
 
@@ -84,33 +81,10 @@
         android:id="@+id/descriptionV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/imageView3"
         android:layout_below="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3"
         android:layout_marginTop="19dp"
-        android:text="TextView" />
-
-    <Button
-        android:id="@+id/button6"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_above="@+id/delBtn"
-        android:layout_alignStart="@+id/descriptionV"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="122dp"
-        android:background="@drawable/ic_check_circle_black_24dp" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button6"
-        android:layout_alignBottom="@+id/button6"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_toEndOf="@+id/imageView3"
-        android:gravity="center_vertical"
+        android:background="@android:color/transparent"
         android:text="TextView" />
 
 
