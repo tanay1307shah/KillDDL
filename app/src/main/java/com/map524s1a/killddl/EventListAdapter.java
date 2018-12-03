@@ -1,11 +1,12 @@
 package com.map524s1a.killddl;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ import java.util.zip.Inflater;
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder> {
     private List<Event> mEvents;
     private Context mContext;
+    private Dialog dialog;
+
 
     public EventListAdapter(Context context, List<Event> events) {
         mContext = context;
@@ -93,79 +97,20 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             }
         });
 
-        eventViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext.getApplicationContext());
-            }
-        });
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mContext.getApplicationContext());
+        final View mView = LayoutInflater.from(mContext.getApplicationContext()).inflate(R.layout.activity_event_view, null);
+
+
+
         eventViewHolder.cv.setOnClickListener(new View.OnClickListener() {
             // show details
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(mContext.getApplicationContext());
-                final View mView = LayoutInflater.from(mContext.getApplicationContext()).inflate(R.layout.activity_event_view, null);
 
-
-                String eventNameString;
-                String descripString;
-                //private Button
-                EditText event = mView.findViewById(R.id.eventNameV);
-                EditText dueDate = mView.findViewById(R.id.dueDate);
-                EditText descrip = mView.findViewById(R.id.descriptionV);
-
-                event.setText(e.get_eventName());
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-                dueDate.setText(dateFormat.format(e.get_dueDate()));
-                descrip.setText(e.get_description());
-
-
-                final Button editBtn = mView.findViewById(R.id.editBtn);
-
-                //fake remove button, not connected to database
-                //use the.childmethod and then call the event getters to get values: String eventName, String description,String timeStr, Date dueDate, Date time, int frequency, int importance, String id,String color
-                //use the mview.findbyid to get new values
-                //use the firebase updateChildren() function, create map, to update values.
-                editBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Event temp = e;
-                        //View mView = getLayoutInflater().inflate(R.layout.activity_event_view,null);
-
-                        EditText eventName = mView.findViewById(R.id.eventNameV);
-                        EditText description = mView.findViewById(R.id.descriptionV);
-
-                        //eventName.setText(e.get_eventName());
-                        //description.setText(e.get_description());
-
-                        String tempEventName = eventName.getText().toString();
-                        String tempDescription = description.getText().toString();
-
-                        HashMap<String, Object> updatedValues = new HashMap<String, Object>();
-                        updatedValues.put("_eventName", tempEventName);
-                        updatedValues.put("_description", tempDescription);
-
-                        //TODO
-                        //eventsReference.child(e.get_id()).updateChildren(updatedValues);
-                        //TODO close popup
-                    }
-                });
-
-
-
-
-                Button removeBtn  = mView.findViewById(R.id.delBtn);
-                removeBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //  eventsReference.child(e.get_id()).removeValue();
-                        // Log.e(TAG, " deleted " + e.get_eventName());
-                        //TODO close popup
-                    }
-                });
-                builder.setView(mView);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                Intent i = new Intent(mContext,event_View_Activity.class);
+                i.putExtra("event", e);
+                mContext.startActivity(i);
             }
         });
     }

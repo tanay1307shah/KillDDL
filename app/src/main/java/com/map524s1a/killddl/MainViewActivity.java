@@ -2,6 +2,8 @@ package com.map524s1a.killddl;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -352,7 +354,7 @@ public class MainViewActivity extends AppCompatActivity
                 Spinner yearSpin = mView.findViewById(R.id.spinner_year);
                 Spinner notifySpin = mView.findViewById(R.id.spinner_notify);
                 Spinner colorSpin = mView.findViewById(R.id.ColorSpinner);
-                final com.skydoves.colorpickerpreference.ColorPickerView colorPick = mView.findViewById(R.id.colorPickerView);
+
                 timeVal = mView.findViewById(R.id.t_val);
                 final TextView eventName = mView.findViewById(R.id.topic_val);
                 final TextView description = mView.findViewById(R.id.des_val);
@@ -442,14 +444,6 @@ public class MainViewActivity extends AppCompatActivity
                     }
                 });
 
-                colorPick.setColorListener(new ColorListener() {
-                    @Override
-                    public void onColorSelected(ColorEnvelope colorEnvelope) {
-
-                    }
-                });
-
-
                 timeVal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -511,6 +505,7 @@ public class MainViewActivity extends AppCompatActivity
 
                 builder.setView(mView);
                 AlertDialog dialog =  builder.create();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
 
